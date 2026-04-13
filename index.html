@@ -38,6 +38,7 @@
                 <span onclick="navigateTo('news')" class="nav-link hover:text-red-500" data-page-link="news">News</span>
                 <a href="#portfolio" onclick="navigateTo('home')" class="nav-link hover:text-red-500">Portfolio</a>
                 <a href="#games" onclick="navigateTo('home')" class="nav-link hover:text-red-500">Games</a>
+                <a href="Pages/contact.html" class="nav-link hover:text-red-500">Contact</a>
             </div>
             <div class="flex gap-4">
                 <a href="#" id="link-youtube" class="hover:text-red-500 transition-colors"><i data-lucide="youtube" class="w-5 h-5"></i></a>
@@ -135,7 +136,7 @@
             <div class="glass p-10 rounded-3xl leading-relaxed text-gray-400 space-y-4">
                 <p>System Page: Add your TSBC history and mission statement here.</p>
             </div>
-            <button onclick="navigateTo('home')" class="mt-8 text-red-500 font-bold flex items-center gap-2">
+            <button onclick="navigateTo('home')" class="mt-8 text-red-500 font-bold flex items-center gap-2 uppercase tracking-widest text-xs">
                 <i data-lucide="arrow-left" class="w-4 h-4"></i> BACK TO HOME
             </button>
         </div>
@@ -149,7 +150,7 @@
                     <p class="text-gray-500">Welcome to the new official home of TSBC.</p>
                 </div>
             </div>
-            <button onclick="navigateTo('home')" class="mt-8 text-red-500 font-bold flex items-center gap-2">
+            <button onclick="navigateTo('home')" class="mt-8 text-red-500 font-bold flex items-center gap-2 uppercase tracking-widest text-xs">
                 <i data-lucide="arrow-left" class="w-4 h-4"></i> BACK TO HOME
             </button>
         </div>
@@ -166,21 +167,24 @@
                 <p class="text-gray-500 text-sm">Established 2014. From TV10 Indonesia to a global community.</p>
             </div>
             <div>
-                <h5 class="font-bold uppercase tracking-widest text-xs mb-6 text-red-500">Links</h5>
+                <h5 class="font-bold uppercase tracking-widest text-xs mb-6 text-red-500">Quick Navigation</h5>
                 <ul class="space-y-3 text-sm text-gray-500 font-bold">
+                    <li><span onclick="navigateTo('home')" class="nav-link hover:text-white">Home</span></li>
                     <li><span onclick="navigateTo('about')" class="nav-link hover:text-white">Our Story</span></li>
                     <li><span onclick="navigateTo('news')" class="nav-link hover:text-white">Latest News</span></li>
-                    <li><a href="#" id="footer-link-1" class="hover:text-white">Media Archive</a></li>
                 </ul>
             </div>
             <div>
-                <h5 class="font-bold uppercase tracking-widest text-xs mb-6 text-red-500">Hours (WIB) All Crew is Volunteer and Core Crew</h5>
-                <p class="text-sm text-gray-400">Mon - Fri: 9:00 AM - 5:30 PM</p>
-                <p class="text-sm text-gray-400">Sunday: 9:00 AM - 5:30 PM</p>
+                <h5 class="font-bold uppercase tracking-widest text-xs mb-6 text-red-500">Company & Contact</h5>
+                <ul id="useful-links" class="space-y-3 text-sm text-gray-500 font-bold">
+                    <!-- Dynamic Links -->
+                </ul>
             </div>
             <div>
                 <h5 class="font-bold uppercase tracking-widest text-xs mb-6 text-red-500">Legacy</h5>
-                <p class="text-[10px] text-gray-600 uppercase font-bold tracking-widest">TV10 INDONESIA ERA (2015-2020)</p>
+                <p class="text-[10px] text-gray-600 uppercase font-bold tracking-widest mb-2">TV10 INDONESIA ERA (2015-2020)</p>
+                <p class="text-xs text-gray-500">Core Crew & Volunteer Network</p>
+                <p class="text-[9px] text-gray-700 mt-4 uppercase">WIB Hours: 9:00 AM - 5:30 PM</p>
             </div>
         </div>
         <div class="max-w-7xl mx-auto mt-20 pt-8 border-t border-white/5 text-center text-[10px] text-gray-700 tracking-[0.3em] uppercase font-bold">
@@ -192,13 +196,21 @@
     <script src="Scripts/games.js"></script>
 
     <script>
-        // Data Structures for Team (Kept in HTML for easy quick edits)
+        // Data Structure for Team
         const team = [
             { n: "Naufal Ammariiq", r: "Founder" },
             { n: "Halvino Nataprawira", r: "Co-Founder / HRD" },
             { n: "Abyan Areli", r: "Financial Officer" },
             { n: "Muhammad Fadhlan", r: "Operations Officer" },
-            { n: "Vacant", r: "Technology Officer" } // Corrected based on your doc
+            { n: "Vacant", r: "Technology Officer" }
+        ];
+
+        // Easy-to-edit Links list for the footer
+        const usefulLinks = [
+            { name: "Contact Us", url: "Pages/contact.html" },
+            { name: "Media Archive", url: "#" },
+            { name: "Join the Crew", url: "#" },
+            { name: "Privacy Policy", url: "#" }
         ];
 
         // Page Navigation System
@@ -209,7 +221,6 @@
                 if (el) el.hidden = (p !== pageId);
             });
             
-            // Update nav active state
             document.querySelectorAll('[data-page-link]').forEach(link => {
                 if (link.dataset.pageLink === pageId) {
                     link.classList.add('text-red-500');
@@ -238,6 +249,14 @@
                 `).join('');
             }
 
+            // Render Footer Links
+            const linkContainer = document.getElementById('useful-links');
+            if (linkContainer) {
+                linkContainer.innerHTML = usefulLinks.map(l => `
+                    <li><a href="${l.url}" class="hover:text-white transition-colors">${l.name}</a></li>
+                `).join('');
+            }
+
             // TRIGGER RENDER GAMES FROM games.js
             if (typeof renderGames === 'function') {
                 renderGames();
@@ -258,7 +277,6 @@
                 }
             });
 
-            // Initialize Lucide Icons
             lucide.createIcons();
         });
     </script>
