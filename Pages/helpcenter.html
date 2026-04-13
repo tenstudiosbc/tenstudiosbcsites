@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TSBC Help Centre — Find answers to your questions about TSBC games, media, and community.">
+    <title>Help Centre | TSBC Official</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2WK59XET1E"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-2WK59XET1E');
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0a;
+            color: white;
+            margin: 0;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        /* Glass utility — matches index.html */
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0a0a0a; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #dc2626; }
+
+        /* Animations */
+        .page-transition { animation: fadeIn 0.4s ease-out; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Hero gradient blob */
+        .hero-blob {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(220,38,38,0.12) 0%, transparent 70%);
+            pointer-events: none;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Sticky sidebar active state */
+        .sidebar-link.active { color: #ef4444; }
+        .sidebar-link.active::before {
+            content: '';
+            position: absolute;
+            left: -1px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #dc2626;
+            border-radius: 2px;
+        }
+
+        /* Accordion icon rotation handled inline via JS */
+        [data-searchable] { transition: opacity 0.2s; }
+    </style>
+</head>
+<body class="page-transition">
+
+    <!-- ─── NAVIGATION (identical structure to index.html) ─── -->
+    <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-300 bg-transparent py-6">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            <a href="../index.html" class="flex items-center gap-3 cursor-pointer">
+                <div class="bg-red-600 text-white font-black px-2 py-1 rounded shadow-lg shadow-red-600/20">10</div>
+                <span class="font-black text-xl tracking-tighter uppercase">TSBC Official</span>
+            </a>
+            <div class="hidden md:flex gap-8 text-sm font-bold uppercase tracking-widest text-gray-400">
+                <a href="../index.html" class="hover:text-red-500 transition-colors">Home</a>
+                <a href="../index.html#portfolio" class="hover:text-red-500 transition-colors">Portfolio</a>
+                <a href="../index.html#games" class="hover:text-red-500 transition-colors">Games</a>
+                <a href="contact.html" class="hover:text-red-500 transition-colors">Contact</a>
+                <span class="text-red-500 uppercase">Help Centre</span>
+            </div>
+            <div class="flex gap-4">
+                <a href="#" id="link-youtube" class="hover:text-red-500 transition-colors"><i data-lucide="youtube" class="w-5 h-5"></i></a>
+                <a href="#" id="link-twitter" class="hover:text-red-500 transition-colors"><i data-lucide="twitter" class="w-5 h-5"></i></a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ─── HERO ─────────────────────────────────────────────── -->
+    <section class="relative pt-44 pb-24 px-6 text-center overflow-hidden">
+        <div class="hero-blob"></div>
+
+        <div class="relative z-10">
+            <div class="inline-flex items-center gap-2 border border-red-600/50 px-4 py-1 rounded-full text-red-500 text-xs font-bold tracking-widest uppercase mb-6 bg-red-600/5">
+                <i data-lucide="life-buoy" class="w-3 h-3"></i>
+                Help Centre
+            </div>
+
+            <h1 class="text-5xl md:text-7xl font-black leading-none tracking-tighter uppercase mb-5">
+                How can we<br/>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-400">help you?</span>
+            </h1>
+            <p class="text-gray-500 text-lg mb-10 max-w-xl mx-auto">
+                Search our knowledge base or browse by category below.
+            </p>
+
+            <!-- Search Bar -->
+            <div class="max-w-2xl mx-auto relative">
+                <i data-lucide="search" class="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500 pointer-events-none"></i>
+                <input
+                    id="help-search"
+                    type="text"
+                    placeholder="Search articles, games, guides…"
+                    autocomplete="off"
+                    class="w-full glass rounded-2xl pl-14 pr-6 py-5 text-white placeholder-gray-600 text-base font-medium focus:outline-none focus:border-red-600/60 transition-all"
+                    style="background: rgba(255,255,255,0.04);"
+                />
+            </div>
+
+            <!-- Quick Links -->
+            <div id="quick-links-grid" class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-10 max-w-3xl mx-auto">
+                <!-- Rendered by helpcentre.js -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── DIVIDER ───────────────────────────────────────────── -->
+    <div class="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+
+    <!-- ─── MAIN CONTENT ─────────────────────────────────────── -->
+    <main class="max-w-7xl mx-auto px-6 py-20 flex flex-col lg:flex-row gap-16">
+
+        <!-- Sidebar (desktop only) -->
+        <aside class="hidden lg:block w-60 flex-shrink-0">
+            <div class="sticky top-32">
+                <p class="text-[10px] font-bold uppercase tracking-widest text-gray-600 mb-5">Browse by Topic</p>
+                <nav id="sidebar-nav" class="space-y-1">
+                    <!-- Rendered dynamically below -->
+                </nav>
+                <div class="mt-10 glass rounded-2xl p-5">
+                    <p class="text-xs font-bold uppercase tracking-widest text-red-500 mb-3">Still need help?</p>
+                    <p class="text-xs text-gray-500 leading-relaxed mb-4">Our team responds during WIB business hours.</p>
+                    <a href="contact.html" class="block text-center bg-red-600 hover:bg-red-700 transition-colors text-white font-bold text-xs py-3 px-4 rounded-xl uppercase tracking-widest">
+                        Contact Us
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Articles Area -->
+        <div class="flex-1 min-w-0">
+
+            <!-- No Results Message -->
+            <div id="no-results" class="glass rounded-2xl p-12 text-center mb-10" hidden>
+                <i data-lucide="search-x" class="w-10 h-10 text-gray-600 mx-auto mb-4"></i>
+                <p class="font-bold text-gray-400 text-lg">No articles found.</p>
+                <p class="text-gray-600 text-sm mt-2">Try a different keyword or <a href="contact.html" class="text-red-500 hover:underline">contact us</a> directly.</p>
+            </div>
+
+            <!-- Categories & Accordions -->
+            <div id="help-categories">
+                <!-- Rendered by helpcentre.js -->
+                <div class="text-gray-600 animate-pulse text-sm">Loading help articles…</div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- ─── FOOTER (matches index.html) ─────────────────────── -->
+    <footer class="bg-black border-t border-white/5 py-20 px-6 mt-10">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-16">
+            <div>
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="bg-red-600 text-white font-black px-2 py-1 rounded">10</div>
+                    <span class="font-black text-xl tracking-tighter uppercase">TSBC</span>
+                </div>
+                <p class="text-gray-500 text-sm">Established 2014. From TV10 Indonesia to a global community.</p>
+            </div>
+            <div>
+                <h5 class="font-bold uppercase tracking-widest text-xs mb-6 text-red-500">Quick Navigation</h5>
+                <ul class="space-y-3 text-sm text-gray-500 font-bold">
+                    <li><a href="../index.html" class="hover:text-white transition-colors">Home</a></li>
+                    <li><a href="../index.html#portfolio" class="hover:text-white transition-colors">Portfolio</a></li>
+                    <li><a href="../index.html#games" class="hover:text-white transition-colors">Games</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="font-bold uppercase tracking-widest text-xs mb-6 text-red-500">Help Centre</h5>
+                <ul id="footer-help-links" class="space-y-3 text-sm text-gray-500 font-bold">
+                    <!-- Rendered dynamically -->
+                </ul>
+            </div>
+            <div>
+                <h5 class="font-bold uppercase tracking-widest text-xs mb-6 text-red-500">Legacy</h5>
+                <p class="text-[10px] text-gray-600 uppercase font-bold tracking-widest mb-2">TV10 INDONESIA ERA (2015–2020)</p>
+                <p class="text-xs text-gray-500">Core Crew & Volunteer Network</p>
+                <p class="text-[9px] text-gray-700 mt-4 uppercase">WIB Hours: 9:00 AM – 5:30 PM</p>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto mt-20 pt-8 border-t border-white/5 text-center text-[10px] text-gray-700 tracking-[0.3em] uppercase font-bold">
+            &copy; 2026 TenStudios Broadcasting Community
+        </div>
+    </footer>
+
+    <!-- ─── DATA + LOGIC ──────────────────────────────────────── -->
+    <!-- Point this to the correct relative path for your Pages/ folder -->
+    <script src="../Scripts/helpcentre.js"></script>
+
+    <script>
+        // ── Bootstrap ──────────────────────────────────────────
+        window.addEventListener('DOMContentLoaded', () => {
+
+            // Render all help content from helpcentre.js
+            if (typeof renderHelpCentre === 'function') {
+                renderHelpCentre();
+            } else {
+                console.error('renderHelpCentre() not found. Check Scripts/helpcentre.js path.');
+                document.getElementById('help-categories').innerHTML =
+                    '<div class="text-red-500 font-bold">Error: Could not load help database.</div>';
+            }
+
+            // Build sidebar nav from helpData
+            const sidebar = document.getElementById('sidebar-nav');
+            const footerLinks = document.getElementById('footer-help-links');
+
+            if (sidebar && typeof helpData !== 'undefined') {
+                sidebar.innerHTML = helpData.map(cat => `
+                    <a href="#cat-${cat.id}"
+                       class="sidebar-link relative flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-gray-500 font-bold hover:text-white hover:bg-white/5 transition-all group border-l-2 border-transparent hover:border-red-600/40">
+                        <i data-lucide="${cat.icon}" class="w-4 h-4 ${cat.color} flex-shrink-0"></i>
+                        <span>${cat.title}</span>
+                    </a>
+                `).join('');
+
+                footerLinks.innerHTML = helpData.map(cat => `
+                    <li><a href="#cat-${cat.id}" class="hover:text-white transition-colors">${cat.title}</a></li>
+                `).join('');
+            }
+
+            // Navbar scroll effect
+            window.addEventListener('scroll', () => {
+                const nav = document.getElementById('navbar');
+                if (window.scrollY > 50) {
+                    nav.classList.add('bg-black/95', 'py-4', 'shadow-2xl', 'border-b', 'border-white/5');
+                    nav.classList.remove('bg-transparent', 'py-6');
+                } else {
+                    nav.classList.remove('bg-black/95', 'py-4', 'shadow-2xl', 'border-b', 'border-white/5');
+                    nav.classList.add('bg-transparent', 'py-6');
+                }
+            });
+
+            // Activate sidebar link on scroll
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.id.replace('cat-', '');
+                        document.querySelectorAll('.sidebar-link').forEach(l => {
+                            l.classList.toggle('active', l.getAttribute('href') === `#cat-${id}`);
+                        });
+                    }
+                });
+            }, { rootMargin: '-30% 0px -60% 0px' });
+
+            document.querySelectorAll('#help-categories > div[id]').forEach(section => {
+                observer.observe(section);
+            });
+
+            lucide.createIcons();
+        });
+    </script>
+
+</body>
+</html>
