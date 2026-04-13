@@ -60,7 +60,7 @@ const helpData = [
         articles: [
             {
                 question: "Where can I download TSBC games?",
-                answer: "All of our game releases are available through the TSBC Games portal at tsbcgames.tenstudiosbc.my.id. Individual game pages will have direct download links and installation instructions."
+                answer: "All of our game releases are available through the TSBC Games portal at tsbcgames.tenstudiosbc.my.id. or check our itch.io, Individual game pages will have direct download links and installation instructions."
             },
             {
                 question: "My game crashes on startup — what should I do?",
@@ -68,11 +68,11 @@ const helpData = [
             },
             {
                 question: "The game shows a missing file error. How do I fix it?",
-                answer: "This usually means the download was incomplete or the archive was not fully extracted. Try re-downloading the game and extracting it again to a folder with a simple path (e.g., C:\\Games\\TSBC) with no special characters in the folder name."
+                answer: "This usually means the download was incomplete or the archive was not fully extracted. Try re-downloading the game and extracting it again to a folder with a simple path (e.g., C:\\Games\\TSBC) or in any directory with no special characters in the folder name."
             },
             {
                 question: "How do I save my progress?",
-                answer: "Save points and save menus are built into each individual game. Look for Save Crystals, Save Points, or the in-game menu (usually accessed with the Esc or X key). The save location varies per title — refer to each game's in-game tutorial."
+                answer: "Press on ESC for windows and navigate to the save menu, for android please tap on FAB Menu and the press on the running icon, in android there is an auto-save feature that will save your progress at certain checkpoints, but we recommend manually saving often to avoid any potential data loss."
             },
             {
                 question: "Are there content updates or patches for your games?",
