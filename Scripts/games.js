@@ -6,7 +6,7 @@ const gamesData = [
     {
         id: "ssia-vanguard",
         title: "SSIA: Vanguard Chronicles",
-        engine: "RPG Maker VX Ace",
+        engine: "RPG Maker VX Ace (Windows) & RPG Maker MV (Mobile)",
         genre: "2D Gacha / RPG",
         platforms: "Mobile & Windows",
         status: "Released",
