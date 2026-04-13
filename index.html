@@ -8,7 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
-    <!-- Framer Motion & React via CDNs for direct browser execution -->
+    <!-- React via CDNs -->
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
@@ -21,7 +21,7 @@
         ::-webkit-scrollbar-track { background: #0a0a0a; }
         ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #dc2626; }
-        .game-card:hover .game-overlay { opacity: 1; }
+        .nav-link { cursor: pointer; transition: all 0.3s ease; }
     </style>
 </head>
 <body>
@@ -32,6 +32,7 @@
 
         function App() {
             const [scrolled, setScrolled] = useState(false);
+            const [currentPage, setCurrentPage] = useState('home');
 
             useEffect(() => {
                 const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -40,206 +41,274 @@
                 return () => window.removeEventListener('scroll', handleScroll);
             }, []);
 
-            // Re-run lucide on every render to ensure icons are parsed
             useEffect(() => {
                 lucide.createIcons();
-            });
+                window.scrollTo(0, 0);
+            }, [currentPage]);
+
+            const navigate = (page) => {
+                setCurrentPage(page);
+            };
+
+            // Render different pages based on state
+            const renderContent = () => {
+                switch(currentPage) {
+                    case 'about':
+                        return (
+                            <div className="pt-32 pb-20 px-6 max-w-7xl mx-auto min-h-screen">
+                                <h1 className="text-5xl font-black mb-8">ABOUT TSBC</h1>
+                                <div className="glass p-10 rounded-3xl">
+                                    <p className="text-gray-400 leading-relaxed">System Page Placeholder: Add your "About Us" content here.</p>
+                                </div>
+                                <button onClick={() => navigate('home')} className="mt-8 text-red-500 font-bold flex items-center gap-2">
+                                    <i data-lucide="arrow-left" className="w-4 h-4"></i> Back to Home
+                                </button>
+                            </div>
+                        );
+                    case 'news':
+                        return (
+                            <div className="pt-32 pb-20 px-6 max-w-7xl mx-auto min-h-screen">
+                                <h1 className="text-5xl font-black mb-8">LATEST NEWS</h1>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                    <div className="glass p-8 rounded-2xl">
+                                        <h3 className="text-xl font-bold mb-2">System Update</h3>
+                                        <p className="text-gray-500">Add your news articles here.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        );
+                    // ADD MORE CASES HERE LATER (e.g., 'careers', 'contact', 'privacy')
+                    
+                    default:
+                        return (
+                            <>
+                                {/* Hero Section */}
+                                <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+                                    <div className="absolute inset-0 hero-gradient z-0"></div>
+                                    <div className="relative z-10 text-center px-6">
+                                        <div className="inline-block border border-red-600/50 px-4 py-1 rounded-full text-red-500 text-xs font-bold tracking-widest uppercase mb-6 bg-red-600/5">
+                                            Founded October 6, 2014
+                                        </div>
+                                        <h1 className="text-6xl md:text-8xl font-black mb-6 leading-none tracking-tighter uppercase">
+                                            TSBC<br/>
+                                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-400 text-3xl md:text-5xl block mt-4">TenStudios Broadcasting Community</span>
+                                        </h1>
+                                        <p className="max-w-2xl mx-auto text-gray-400 text-lg md:text-xl mb-10">
+                                            A non-profit broadcasting community specializing in cinematic storytelling across YouTube and immersive game development.
+                                        </p>
+                                        <div className="flex flex-wrap justify-center gap-4">
+                                            <a href="#portfolio" className="bg-red-600 hover:bg-red-700 px-8 py-4 rounded-lg font-bold transition-all transform hover:scale-105 shadow-lg shadow-red-600/20">View Portfolio</a>
+                                            <a href="#games" className="glass hover:bg-white/10 px-8 py-4 rounded-lg font-bold transition-all">Games Division</a>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                {/* Media Portfolio */}
+                                <section id="portfolio" className="py-24 px-6 max-w-7xl mx-auto">
+                                    <div className="mb-16">
+                                        <h2 className="text-4xl font-black uppercase mb-4">Media Production</h2>
+                                        <div className="w-20 h-1 bg-red-600"></div>
+                                    </div>
+                                    
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                                        <div className="glass p-8 rounded-2xl border-l-4 border-red-600">
+                                            <div className="flex items-center gap-4 mb-6">
+                                                <i data-lucide="tv" className="text-red-500"></i>
+                                                <h3 className="text-2xl font-bold">SSIA Universe Series</h3>
+                                            </div>
+                                            <ul className="space-y-4 text-gray-400">
+                                                <li className="flex items-center gap-2"><i data-lucide="check-circle-2" className="w-4 h-4 text-red-600"></i> SSIA (Sierra Secret Investigation Agency)</li>
+                                                <li className="flex items-center gap-2"><i data-lucide="check-circle-2" className="w-4 h-4 text-red-600"></i> SSIA: Criminals Hunting Unit</li>
+                                                <li className="flex items-center gap-2"><i data-lucide="check-circle-2" className="w-4 h-4 text-red-600"></i> SSIA: Fugitives Task Force</li>
+                                                <li className="flex items-center gap-2"><i data-lucide="check-circle-2" className="w-4 h-4 text-red-600"></i> SSIA: Origins</li>
+                                            </ul>
+                                            <div className="mt-8">
+                                                <a href="#" className="text-sm font-bold text-red-500 hover:underline uppercase tracking-widest flex items-center gap-2">Explore Universe <i data-lucide="external-link" className="w-3 h-3"></i></a>
+                                            </div>
+                                        </div>
+                                        <div className="glass p-8 rounded-2xl">
+                                            <div className="flex items-center gap-4 mb-6">
+                                                <i data-lucide="clapperboard" className="text-red-500"></i>
+                                                <h3 className="text-2xl font-bold">Series & Shows</h3>
+                                            </div>
+                                            <ul className="space-y-4 text-gray-400">
+                                                <li className="flex items-center gap-2"><i data-lucide="play" className="w-4 h-4 text-red-600"></i> Sandy State Stories (34 Episodes)</li>
+                                                <li className="flex items-center gap-2"><i data-lucide="play" className="w-4 h-4 text-red-600"></i> Rangga Show (12 Episodes)</li>
+                                                <li className="flex items-center gap-2"><i data-lucide="play" className="w-4 h-4 text-red-600"></i> South East Gear (36 Episodes)</li>
+                                                <li className="flex items-center gap-2"><i data-lucide="play" className="w-4 h-4 text-red-600"></i> Shift and Gear</li>
+                                            </ul>
+                                            <div className="mt-8">
+                                                <a href="#" className="text-sm font-bold text-gray-400 hover:text-white uppercase tracking-widest flex items-center gap-2">Watch Archive <i data-lucide="youtube" className="w-3 h-3"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                {/* Games Division */}
+                                <section id="games" className="py-24 bg-[#0d0d0d]">
+                                    <div className="max-w-7xl mx-auto px-6">
+                                        <div className="mb-16">
+                                            <h2 className="text-4xl font-black uppercase mb-4">Games Development</h2>
+                                            <div className="w-20 h-1 bg-red-600"></div>
+                                        </div>
+                                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                                            {/* FEATURED GAME: SSIA Vanguard Chronicles */}
+                                            <div className="bg-black border border-white/5 rounded-xl overflow-hidden hover:border-red-600/50 transition-all group relative shadow-2xl">
+                                                <div className="h-56 overflow-hidden relative">
+                                                    <img 
+                                                        src="https://img.itch.zone/aW1nLzI0OTUzNzA1LmpwZw==/original/gyEMFM.jpg" 
+                                                        alt="SSIA: Vanguard Chronicles" 
+                                                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                                    />
+                                                    <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+                                                </div>
+                                                <div className="p-6">
+                                                    <div className="flex justify-between items-start mb-2">
+                                                        <span className="text-[10px] bg-green-500/20 text-green-500 px-2 py-1 rounded font-bold uppercase tracking-widest">Released</span>
+                                                        <i data-lucide="gamepad-2" className="w-5 h-5 text-red-600"></i>
+                                                    </div>
+                                                    <h4 className="text-xl font-bold mt-1">SSIA: Vanguard Chronicles</h4>
+                                                    <p className="text-sm text-gray-500 mt-2">RPG Maker VX Ace • 2D Gacha • Mobile & Windows</p>
+                                                    <div className="mt-6">
+                                                        <a 
+                                                            href="https://tenstudiosbc.itch.io/ssia-vanguard-chronicles" 
+                                                            target="_blank"
+                                                            className="w-full bg-[#fa5c5c] hover:bg-[#ff4545] text-white py-3 rounded-lg font-black text-center text-sm transition-all flex items-center justify-center gap-2 shadow-lg shadow-red-600/20"
+                                                        >
+                                                            <i data-lucide="download" className="w-4 h-4"></i> DOWNLOAD ON ITCH.IO
+                                                        </a>
+                                                        <p className="text-[10px] text-gray-600 text-center uppercase tracking-widest font-bold mt-4">Version 1.0.4 • Aug 2025</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div className="bg-black border border-white/5 p-6 rounded-xl hover:border-red-600/50 transition-all group flex flex-col">
+                                                <div className="h-40 bg-blue-900/10 rounded-lg mb-6 flex items-center justify-center border border-blue-500/10">
+                                                    <i data-lucide="layout" className="w-12 h-12 text-blue-600 group-hover:scale-110 transition-transform"></i>
+                                                </div>
+                                                <span className="text-[10px] bg-blue-500/20 text-blue-500 px-2 py-1 rounded font-bold uppercase tracking-widest">Announced</span>
+                                                <h4 className="text-xl font-bold mt-3">SSIA: ShadowFront</h4>
+                                                <p className="text-sm text-gray-500 mt-2">Godot Engine</p>
+                                                <div className="mt-auto pt-6">
+                                                    <a href="#" className="text-xs font-bold text-blue-500 uppercase tracking-widest">Learn More</a>
+                                                </div>
+                                            </div>
+
+                                            <div className="bg-black border border-white/5 p-6 rounded-xl hover:border-red-600/50 transition-all group flex flex-col">
+                                                <div className="h-40 bg-yellow-900/10 rounded-lg mb-6 flex items-center justify-center border border-yellow-500/10">
+                                                    <i data-lucide="sparkles" className="w-12 h-12 text-yellow-600 group-hover:scale-110 transition-transform"></i>
+                                                </div>
+                                                <span className="text-[10px] bg-yellow-500/20 text-yellow-500 px-2 py-1 rounded font-bold uppercase tracking-widest">Upcoming</span>
+                                                <h4 className="text-xl font-bold mt-3">Sandy State Stories</h4>
+                                                <p className="text-sm text-gray-500 mt-2">TSBC Original Game</p>
+                                                <div className="mt-auto pt-6">
+                                                    <a href="#" className="text-xs font-bold text-yellow-500 uppercase tracking-widest">Follow DevLog</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                {/* Team */}
+                                <section id="team" className="py-24 px-6 max-w-7xl mx-auto">
+                                    <div className="mb-16">
+                                        <h2 className="text-4xl font-black uppercase mb-4">The Core Team</h2>
+                                        <div className="w-20 h-1 bg-red-600"></div>
+                                    </div>
+                                    <div className="grid grid-cols-2 lg:grid-cols-5 gap-8">
+                                        {[
+                                            { n: "Naufal Ammariiq", r: "Founder" },
+                                            { n: "Halvino Nataprawira", r: "Co-Founder / HRD" },
+                                            { n: "Abyan Areli", r: "Financial Officer" },
+                                            { n: "Muhammad Fadhlan", r: "Operations Officer" },
+                                            { n: "Vacant", r: "Technology Officer" }
+                                        ].map((m, i) => (
+                                            <div key={i} className="text-center group">
+                                                <div className="w-24 h-24 bg-gradient-to-tr from-red-600 to-red-400 rounded-full mx-auto mb-4 flex items-center justify-center font-black text-2xl shadow-lg shadow-red-600/20 group-hover:rotate-6 transition-transform">
+                                                    {m.n.charAt(0)}
+                                                </div>
+                                                <h4 className="font-bold text-white group-hover:text-red-500 transition-colors">{m.n}</h4>
+                                                <p className="text-[10px] text-gray-500 uppercase tracking-widest mt-1 font-bold">{m.r}</p>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </section>
+                            </>
+                        );
+                }
+            };
 
             return (
                 <div className="min-h-screen">
                     {/* Navigation */}
-                    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-black/95 py-4 shadow-2xl border-b border-white/5' : 'bg-transparent py-6'}`}>
+                    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled || currentPage !== 'home' ? 'bg-black/95 py-4 shadow-2xl border-b border-white/5' : 'bg-transparent py-6'}`}>
                         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-                            <div className="flex items-center gap-3">
+                            <div className="flex items-center gap-3 nav-link" onClick={() => navigate('home')}>
                                 <div className="bg-red-600 text-white font-black px-2 py-1 rounded shadow-lg shadow-red-600/20">10</div>
                                 <span className="font-black text-xl tracking-tighter uppercase">TSBC Official</span>
                             </div>
                             <div className="hidden md:flex gap-8 text-sm font-bold uppercase tracking-widest text-gray-400">
-                                <a href="#home" className="hover:text-red-500 transition-colors">Home</a>
-                                <a href="#portfolio" className="hover:text-red-500 transition-colors">Portfolio</a>
-                                <a href="#games" className="hover:text-red-500 transition-colors">Games</a>
-                                <a href="#team" className="hover:text-red-500 transition-colors">Team</a>
+                                <span onClick={() => navigate('home')} className={`nav-link hover:text-red-500 ${currentPage === 'home' ? 'text-red-500' : ''}`}>Home</span>
+                                <span onClick={() => navigate('about')} className={`nav-link hover:text-red-500 ${currentPage === 'about' ? 'text-red-500' : ''}`}>About</span>
+                                <span onClick={() => navigate('news')} className={`nav-link hover:text-red-500 ${currentPage === 'news' ? 'text-red-500' : ''}`}>News</span>
+                                <a href="#portfolio" onClick={() => navigate('home')} className="nav-link hover:text-red-500">Portfolio</a>
+                                <a href="#games" onClick={() => navigate('home')} className="nav-link hover:text-red-500">Games</a>
+                            </div>
+                            {/* Empty Social Links Placeholder */}
+                            <div className="flex gap-4">
+                                <a href="#" className="hover:text-red-500 transition-colors"><i data-lucide="youtube" className="w-5 h-5"></i></a>
+                                <a href="#" className="hover:text-red-500 transition-colors"><i data-lucide="twitter" className="w-5 h-5"></i></a>
                             </div>
                         </div>
                     </nav>
 
-                    {/* Hero Section */}
-                    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-                        <div className="absolute inset-0 hero-gradient z-0"></div>
-                        <div className="relative z-10 text-center px-6">
-                            <div className="inline-block border border-red-600/50 px-4 py-1 rounded-full text-red-500 text-xs font-bold tracking-widest uppercase mb-6 bg-red-600/5">
-                                Founded October 6, 2014
-                            </div>
-                            <h1 className="text-6xl md:text-8xl font-black mb-6 leading-none tracking-tighter">
-                                TSBC<br/>
-                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-400">TenStudios Broadcasting Community</span>
-                            </h1>
-                            <p className="max-w-2xl mx-auto text-gray-400 text-lg md:text-xl mb-10">
-                                A non-profit broadcasting community specializing in cinematic storytelling across YouTube and immersive game development.
-                            </p>
-                            <div className="flex flex-wrap justify-center gap-4">
-                                <a href="#portfolio" className="bg-red-600 hover:bg-red-700 px-8 py-4 rounded-lg font-bold transition-all transform hover:scale-105 shadow-lg shadow-red-600/20">View Portfolio</a>
-                                <a href="#games" className="glass hover:bg-white/10 px-8 py-4 rounded-lg font-bold transition-all">Games Division</a>
-                            </div>
-                        </div>
-                    </section>
+                    {renderContent()}
 
-                    {/* Media Portfolio */}
-                    <section id="portfolio" className="py-24 px-6 max-w-7xl mx-auto">
-                        <div className="mb-16">
-                            <h2 className="text-4xl font-black uppercase mb-4">Media Production</h2>
-                            <div className="w-20 h-1 bg-red-600"></div>
-                        </div>
-                        
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                            <div className="glass p-8 rounded-2xl">
-                                <div className="flex items-center gap-4 mb-6">
-                                    <i data-lucide="tv" className="text-red-500"></i>
-                                    <h3 className="text-2xl font-bold">SSIA Universe Series</h3>
-                                </div>
-                                <ul className="space-y-4 text-gray-400">
-                                    <li className="flex items-center gap-2"><i data-lucide="check-circle-2" className="w-4 h-4 text-red-600"></i> SSIA (Sierra Secret Investigation Agency)</li>
-                                    <li className="flex items-center gap-2"><i data-lucide="check-circle-2" className="w-4 h-4 text-red-600"></i> SSIA: Criminals Hunting Unit</li>
-                                    <li className="flex items-center gap-2"><i data-lucide="check-circle-2" className="w-4 h-4 text-red-600"></i> SSIA: Fugitives Task Force</li>
-                                    <li className="flex items-center gap-2"><i data-lucide="check-circle-2" className="w-4 h-4 text-red-600"></i> SSIA: Origins</li>
-                                </ul>
-                            </div>
-                            <div className="glass p-8 rounded-2xl">
-                                <div className="flex items-center gap-4 mb-6">
-                                    <i data-lucide="clapperboard" className="text-red-500"></i>
-                                    <h3 className="text-2xl font-bold">Series & Shows</h3>
-                                </div>
-                                <ul className="space-y-4 text-gray-400">
-                                    <li className="flex items-center gap-2"><i data-lucide="play" className="w-4 h-4 text-red-600"></i> Sandy State Stories (34 Episodes)</li>
-                                    <li className="flex items-center gap-2"><i data-lucide="play" className="w-4 h-4 text-red-600"></i> Rangga Show (12 Episodes)</li>
-                                    <li className="flex items-center gap-2"><i data-lucide="play" className="w-4 h-4 text-red-600"></i> South East Gear (36 Episodes)</li>
-                                    <li className="flex items-center gap-2"><i data-lucide="play" className="w-4 h-4 text-red-600"></i> Shift and Gear</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </section>
-
-                    {/* Games Division */}
-                    <section id="games" className="py-24 bg-[#0d0d0d]">
-                        <div className="max-w-7xl mx-auto px-6">
-                            <div className="mb-16">
-                                <h2 className="text-4xl font-black uppercase mb-4">Games Development</h2>
-                                <div className="w-20 h-1 bg-red-600"></div>
-                            </div>
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                                {/* FEATURED GAME: SSIA Vanguard Chronicles */}
-                                <div className="bg-black border border-white/5 rounded-xl overflow-hidden hover:border-red-600/50 transition-all group game-card relative">
-                                    <div className="h-56 overflow-hidden relative">
-                                        <img 
-                                            src="https://img.itch.zone/aW1nLzI0OTUzNzA1LmpwZw==/original/gyEMFM.jpg" 
-                                            alt="SSIA: Vanguard Chronicles" 
-                                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                                        />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
-                                    </div>
-                                    <div className="p-6">
-                                        <div className="flex justify-between items-start mb-2">
-                                            <span className="text-[10px] bg-green-500/20 text-green-500 px-2 py-1 rounded font-bold uppercase tracking-widest">Released</span>
-                                            <i data-lucide="gamepad-2" className="w-5 h-5 text-red-600"></i>
-                                        </div>
-                                        <h4 className="text-xl font-bold mt-1">SSIA: Vanguard Chronicles</h4>
-                                        <p className="text-sm text-gray-500 mt-2">RPG Maker VX Ace • 2D Gacha • F2P • Mobile and Windows</p>
-                                        <div className="mt-6 flex flex-col gap-3">
-                                            <a 
-                                                href="https://tenstudiosbc.itch.io/ssia-vanguard-chronicles" 
-                                                target="_blank"
-                                                className="w-full bg-[#fa5c5c] hover:bg-[#ff4545] text-white py-3 rounded-lg font-black text-center text-sm transition-all flex items-center justify-center gap-2"
-                                            >
-                                                <i data-lucide="download" className="w-4 h-4"></i> DOWNLOAD ON ITCH.IO
-                                            </a>
-                                            <p className="text-[10px] text-gray-500 text-center uppercase tracking-widest font-bold">Released: Aug 17, 2025</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="bg-black border border-white/5 p-6 rounded-xl hover:border-red-600/50 transition-all group">
-                                    <div className="h-40 bg-blue-900/10 rounded-lg mb-6 flex items-center justify-center border border-blue-500/10">
-                                        <i data-lucide="layout" className="w-12 h-12 text-blue-600 group-hover:scale-110 transition-transform"></i>
-                                    </div>
-                                    <span className="text-[10px] bg-blue-500/20 text-blue-500 px-2 py-1 rounded font-bold uppercase tracking-widest">Announced</span>
-                                    <h4 className="text-xl font-bold mt-3">SSIA: ShadowFront</h4>
-                                    <p className="text-sm text-gray-500 mt-2">Godot Engine</p>
-                                    <p className="text-xs text-gray-400 mt-4 font-bold uppercase">Target: TBA</p>
-                                </div>
-
-                                <div className="bg-black border border-white/5 p-6 rounded-xl hover:border-red-600/50 transition-all group">
-                                    <div className="h-40 bg-yellow-900/10 rounded-lg mb-6 flex items-center justify-center border border-yellow-500/10">
-                                        <i data-lucide="sparkles" className="w-12 h-12 text-yellow-600 group-hover:scale-110 transition-transform"></i>
-                                    </div>
-                                    <span className="text-[10px] bg-yellow-500/20 text-yellow-500 px-2 py-1 rounded font-bold uppercase tracking-widest">Upcoming</span>
-                                    <h4 className="text-xl font-bold mt-3">Sandy State Stories</h4>
-                                    <p className="text-sm text-gray-500 mt-2">TSBC Original Game</p>
-                                    <p className="text-xs text-gray-400 mt-4 font-bold uppercase tracking-widest">TBA</p>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    {/* Team */}
-                    <section id="team" className="py-24 px-6 max-w-7xl mx-auto">
-                        <div className="mb-16">
-                            <h2 className="text-4xl font-black uppercase mb-4">The Core Team</h2>
-                            <div className="w-20 h-1 bg-red-600"></div>
-                        </div>
-                        <div className="grid grid-cols-2 lg:grid-cols-5 gap-8">
-                            {[
-                                { n: "Naufal Ammariiq", r: "Founder" },
-                                { n: "Halvino Nataprawira", r: "Co-Founder / HRD" },
-                                { n: "Abyan Areli", r: "Financial Officer" },
-                                { n: "Muhammad Fadhlan", r: "Operations Officer" },
-                                { n: "Vacant", r: "Technology Officer" }
-                            ].map((m, i) => (
-                                <div key={i} className="text-center group">
-                                    <div className="w-24 h-24 bg-gradient-to-tr from-red-600 to-red-400 rounded-full mx-auto mb-4 flex items-center justify-center font-black text-2xl shadow-lg shadow-red-600/20 group-hover:scale-105 transition-transform">
-                                        {m.n.charAt(0)}
-                                    </div>
-                                    <h4 className="font-bold text-white group-hover:text-red-500 transition-colors">{m.n}</h4>
-                                    <p className="text-[10px] text-gray-500 uppercase tracking-widest mt-1 font-bold">{m.r}</p>
-                                </div>
-                            ))}
-                        </div>
-                    </section>
-
-                    {/* Footer / Ops */}
+                    {/* Footer */}
                     <footer className="bg-black border-t border-white/5 py-20 px-6">
-                        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-16">
-                            <div>
+                        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-16">
+                            <div className="col-span-1 md:col-span-1">
                                 <div className="flex items-center gap-3 mb-6">
                                     <div className="bg-red-600 text-white font-black px-2 py-1 rounded">10</div>
                                     <span className="font-black text-xl tracking-tighter uppercase">TSBC</span>
                                 </div>
-                                <p className="text-gray-500 text-sm leading-relaxed">
+                                <p className="text-gray-500 text-sm leading-relaxed mb-6">
                                     Established 2014. Evolving from TV10 Indonesia to a global broadcasting and gaming community.
                                 </p>
-                                <div className="mt-8 flex gap-4">
-                                    <a href="#" className="w-10 h-10 glass rounded-full flex items-center justify-center hover:bg-red-600 transition-colors"><i data-lucide="youtube" className="w-5 h-5"></i></a>
-                                    <a href="#" className="w-10 h-10 glass rounded-full flex items-center justify-center hover:bg-red-600 transition-colors"><i data-lucide="instagram" className="w-5 h-5"></i></a>
-                                </div>
                             </div>
                             <div>
-                                <h5 className="font-bold uppercase tracking-widest text-sm mb-6 text-red-500">Operating Hours</h5>
+                                <h5 className="font-bold uppercase tracking-widest text-xs mb-6 text-red-500">Quick Links</h5>
+                                <ul className="space-y-3 text-sm text-gray-500 font-bold">
+                                    <li><span onClick={() => navigate('about')} className="nav-link hover:text-white">Our Story</span></li>
+                                    <li><span onClick={() => navigate('news')} className="nav-link hover:text-white">Latest News</span></li>
+                                    <li><a href="#" className="hover:text-white">Media Archive</a></li>
+                                    <li><a href="#" className="hover:text-white">Careers (Vacant)</a></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 className="font-bold uppercase tracking-widest text-xs mb-6 text-red-500">Operating Hours</h5>
                                 <div className="space-y-3 text-sm text-gray-400">
                                     <div className="flex justify-between"><span>Mon - Fri</span> <span className="text-white">9:00 AM - 5:30 PM</span></div>
                                     <div className="flex justify-between"><span>Sunday</span> <span className="text-white">9:00 AM - 5:30 PM</span></div>
-                                    <p className="text-[10px] text-gray-600 italic mt-4">Note: Voluntary crew-based schedule.</p>
+                                    <p className="text-[10px] text-gray-600 italic mt-4 uppercase tracking-tighter">Voluntary crew-based schedule.</p>
                                 </div>
                             </div>
                             <div>
-                                <h5 className="font-bold uppercase tracking-widest text-sm mb-6 text-red-500">Legacy</h5>
-                                <div className="text-xs text-gray-500 space-y-2">
-                                    <p>• TV10 Indonesia Era (2015-2020)</p>
-                                    <p>• Pre-TV10 Era (2014)</p>
-                                    <p>• TSBC Modern Era (2024-Present)</p>
+                                <h5 className="font-bold uppercase tracking-widest text-xs mb-6 text-red-500">Legacy</h5>
+                                <div className="text-[10px] text-gray-500 space-y-2 uppercase tracking-widest font-bold">
+                                    <p>• TV10 Indonesia (2015-2020)</p>
+                                    <p>• Pre-TV10 (2014)</p>
+                                    <p>• TSBC Modern (2024-Present)</p>
                                 </div>
                             </div>
                         </div>
-                        <div className="max-w-7xl mx-auto mt-20 pt-8 border-t border-white/5 text-center text-[10px] text-gray-700 tracking-[0.3em] uppercase font-bold">
-                            &copy; 2026 TenStudios Broadcasting Community. All Rights Reserved.
+                        <div className="max-w-7xl mx-auto mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] text-gray-700 tracking-[0.3em] uppercase font-bold">
+                            <span>&copy; 2026 TenStudios Broadcasting Community</span>
+                            <div className="flex gap-6">
+                                <a href="#" className="hover:text-white">Terms</a>
+                                <a href="#" className="hover:text-white">Privacy</a>
+                                <a href="#" className="hover:text-white">Sitemap</a>
+                            </div>
                         </div>
                     </footer>
                 </div>
