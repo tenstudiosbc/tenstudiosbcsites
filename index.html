@@ -106,32 +106,14 @@
                     <div class="mb-16">
                         <h2 class="text-4xl font-black uppercase mb-4">Games Development</h2>
                         <div class="w-20 h-1 bg-red-600"></div>
+                        <p class="mt-4 text-gray-500 font-bold uppercase text-xs tracking-widest">Powered by Scripts/games.js</p>
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        <div class="bg-black border border-white/5 rounded-xl overflow-hidden hover:border-red-600/50 transition-all group relative">
-                            <div class="h-56 overflow-hidden relative">
-                                <img src="https://img.itch.zone/aW1nLzI0OTUzNzA1LmpwZw==/original/gyEMFM.jpg" alt="SSIA: Vanguard Chronicles" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
-                            </div>
-                            <div class="p-6">
-                                <span class="text-[10px] bg-green-500/20 text-green-500 px-2 py-1 rounded font-bold uppercase tracking-widest">Released</span>
-                                <h4 class="text-xl font-bold mt-2">SSIA: Vanguard Chronicles</h4>
-                                <p class="text-sm text-gray-500 mt-2">RPG Maker VX Ace • Mobile & Windows</p>
-                                <a href="https://tenstudiosbc.itch.io/ssia-vanguard-chronicles" target="_blank" class="block w-full mt-6 bg-[#fa5c5c] hover:bg-[#ff4545] text-white py-3 rounded-lg font-black text-center text-sm transition-all flex items-center justify-center gap-2">
-                                    <i data-lucide="download" class="w-4 h-4"></i> ITCH.IO
-                                </a>
-                            </div>
-                        </div>
-                        <!-- More Game Placeholders -->
-                        <div class="bg-black border border-white/5 p-6 rounded-xl hover:border-red-600/50 transition-all group flex flex-col">
-                            <div class="h-40 bg-blue-900/10 rounded-lg mb-6 flex items-center justify-center border border-blue-500/10">
-                                <i data-lucide="layout" class="w-12 h-12 text-blue-600"></i>
-                            </div>
-                            <span class="text-[10px] bg-blue-500/20 text-blue-500 px-2 py-1 rounded font-bold uppercase tracking-widest uppercase">Announced</span>
-                            <h4 class="text-xl font-bold mt-3">SSIA: ShadowFront</h4>
-                            <p class="text-sm text-gray-500 mt-2">Godot Engine</p>
-                        </div>
+                    
+                    <!-- DYNAMIC GAMES GRID CONTAINER -->
+                    <div id="games-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="text-gray-600 animate-pulse">Loading games from database...</div>
                     </div>
+                    
                 </div>
             </section>
 
@@ -191,7 +173,7 @@
                 </ul>
             </div>
             <div>
-                <h5 class="font-bold uppercase tracking-widest text-xs mb-6 text-red-500">Hours (WIB)</h5>
+                <h5 class="font-bold uppercase tracking-widest text-xs mb-6 text-red-500">Hours (WIB) All Crew is Volunteer and Core Crew</h5>
                 <p class="text-sm text-gray-400">Mon - Fri: 9:00 AM - 5:30 PM</p>
                 <p class="text-sm text-gray-400">Sunday: 9:00 AM - 5:30 PM</p>
             </div>
@@ -205,14 +187,17 @@
         </div>
     </footer>
 
+    <!-- EXTERNAL DATA SCRIPT IMPORT -->
+    <script src="Scripts/games.js"></script>
+
     <script>
-        // Data Structures
+        // Data Structures for Team (Kept in HTML for easy quick edits)
         const team = [
             { n: "Naufal Ammariiq", r: "Founder" },
             { n: "Halvino Nataprawira", r: "Co-Founder / HRD" },
             { n: "Abyan Areli", r: "Financial Officer" },
             { n: "Muhammad Fadhlan", r: "Operations Officer" },
-            { n: "Vacant", r: "Technology Officer" }
+            { n: "Vacant", r: "Technology Officer" } // Corrected based on your doc
         ];
 
         // Page Navigation System
@@ -237,17 +222,28 @@
 
         // Initialize App
         window.addEventListener('DOMContentLoaded', () => {
+            
             // Render Team
             const teamContainer = document.getElementById('team-list');
-            teamContainer.innerHTML = team.map(m => `
-                <div class="group">
-                    <div class="w-20 h-20 md:w-24 md:h-24 bg-gradient-to-tr from-red-600 to-red-400 rounded-full mx-auto mb-4 flex items-center justify-center font-black text-2xl shadow-lg shadow-red-600/20 group-hover:rotate-6 transition-transform">
-                        ${m.n.charAt(0)}
+            if (teamContainer) {
+                teamContainer.innerHTML = team.map(m => `
+                    <div class="group">
+                        <div class="w-20 h-20 md:w-24 md:h-24 bg-gradient-to-tr from-red-600 to-red-400 rounded-full mx-auto mb-4 flex items-center justify-center font-black text-2xl shadow-lg shadow-red-600/20 group-hover:rotate-6 transition-transform">
+                            ${m.n.charAt(0)}
+                        </div>
+                        <h4 class="font-bold text-white group-hover:text-red-500 transition-colors text-sm md:text-base">${m.n}</h4>
+                        <p class="text-[9px] text-gray-500 uppercase tracking-widest mt-1 font-bold">${m.r}</p>
                     </div>
-                    <h4 class="font-bold text-white group-hover:text-red-500 transition-colors text-sm md:text-base">${m.n}</h4>
-                    <p class="text-[9px] text-gray-500 uppercase tracking-widest mt-1 font-bold">${m.r}</p>
-                </div>
-            `).join('');
+                `).join('');
+            }
+
+            // TRIGGER RENDER GAMES FROM games.js
+            if (typeof renderGames === 'function') {
+                renderGames();
+            } else {
+                console.warn("renderGames() not found. Ensure Scripts/games.js is loaded correctly.");
+                document.getElementById('games-grid').innerHTML = '<div class="text-red-500">Error: Could not load games database.</div>';
+            }
 
             // Navbar Scroll Effect
             window.addEventListener('scroll', () => {
