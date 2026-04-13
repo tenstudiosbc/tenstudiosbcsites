@@ -3,22 +3,219 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome To TSBC Official Sites</title>
-    
-    <!-- Link to external CSS file -->
-    <link rel="stylesheet" href="style.css">
+    <title>TSBC | TenStudios Broadcasting Community Official</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Framer Motion & React via CDNs for direct browser execution -->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #0a0a0a; color: white; margin: 0; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.08); }
+        .hero-gradient { background: radial-gradient(circle at center, rgba(220, 38, 38, 0.15) 0%, transparent 70%); }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0a0a0a; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #dc2626; }
+    </style>
 </head>
 <body>
+    <div id="root"></div>
 
-    <div class="container">
-        <h1>Welcome to the Home Page</h1>
-        <p>This is a professionally structured HTML page for TSBC Official Sites.</p>
-        
-        <button id="actionBtn" class="btn">Click for a Greeting</button>
-        <div id="message-box"></div>
-    </div>
+    <script type="text/babel">
+        const { useState, useEffect } = React;
 
-    <!-- Link to external JavaScript file -->
-    <script src="script.js"></script>
+        function App() {
+            const [scrolled, setScrolled] = useState(false);
+
+            useEffect(() => {
+                const handleScroll = () => setScrolled(window.scrollY > 50);
+                window.addEventListener('scroll', handleScroll);
+                lucide.createIcons(); // Initialize icons
+                return () => window.removeEventListener('scroll', handleScroll);
+            }, []);
+
+            return (
+                <div className="min-h-screen">
+                    {/* Navigation */}
+                    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-black/90 py-4 shadow-xl' : 'bg-transparent py-6'}`}>
+                        <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
+                            <div className="flex items-center gap-3">
+                                <div className="bg-red-600 text-white font-black px-2 py-1 rounded">10</div>
+                                <span className="font-black text-xl tracking-tighter uppercase">TSBC Official</span>
+                            </div>
+                            <div className="hidden md:flex gap-8 text-sm font-bold uppercase tracking-widest text-gray-400">
+                                <a href="#home" className="hover:text-red-500 transition-colors">Home</a>
+                                <a href="#portfolio" className="hover:text-red-500 transition-colors">Portfolio</a>
+                                <a href="#games" className="hover:text-red-500 transition-colors">Games</a>
+                                <a href="#team" className="hover:text-red-500 transition-colors">Team</a>
+                            </div>
+                        </div>
+                    </nav>
+
+                    {/* Hero Section */}
+                    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+                        <div className="absolute inset-0 hero-gradient z-0"></div>
+                        <div className="relative z-10 text-center px-6">
+                            <div className="inline-block border border-red-600/50 px-4 py-1 rounded-full text-red-500 text-xs font-bold tracking-widest uppercase mb-6 bg-red-600/5">
+                                Founded October 6, 2014
+                            </div>
+                            <h1 className="text-6xl md:text-8xl font-black mb-6 leading-none tracking-tighter">
+                                TSBC<br/>
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-400">Media Production and Game development</span>
+                            </h1>
+                            <p className="max-w-2xl mx-auto text-gray-400 text-lg md:text-xl mb-10">
+                                A premier broadcasting community specializing in cinematic storytelling across YouTube and immersive game development.
+                            </p>
+                            <div className="flex flex-wrap justify-center gap-4">
+                                <a href="#portfolio" className="bg-red-600 hover:bg-red-700 px-8 py-4 rounded-lg font-bold transition-all transform hover:scale-105">View Portfolio</a>
+                                <a href="#games" className="glass hover:bg-white/10 px-8 py-4 rounded-lg font-bold transition-all">Games Division</a>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Media Portfolio */}
+                    <section id="portfolio" className="py-24 px-6 max-w-7xl mx-auto">
+                        <div className="mb-16">
+                            <h2 className="text-4xl font-black uppercase mb-4">Media Production</h2>
+                            <div className="w-20 h-1 bg-red-600"></div>
+                        </div>
+                        
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                            <div className="glass p-8 rounded-2xl">
+                                <div className="flex items-center gap-4 mb-6">
+                                    <i data-lucide="tv" class="text-red-500"></i>
+                                    <h3 className="text-2xl font-bold">SSIA Universe</h3>
+                                </div>
+                                <ul className="space-y-4 text-gray-400">
+                                    <li className="flex items-center gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-red-600"></i> SSIA (Sierra Secret Investigation Agency)</li>
+                                    <li className="flex items-center gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-red-600"></i> SSIA: Criminals Hunting Unit</li>
+                                    <li className="flex items-center gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-red-600"></i> SSIA: Fugitives Task Force</li>
+                                    <li className="flex items-center gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-red-600"></i> SSIA: Origins</li>
+                                </ul>
+                            </div>
+                            <div className="glass p-8 rounded-2xl">
+                                <div className="flex items-center gap-4 mb-6">
+                                    <i data-lucide="clapperboard" class="text-red-500"></i>
+                                    <h3 className="text-2xl font-bold">Series & Shows</h3>
+                                </div>
+                                <ul className="space-y-4 text-gray-400">
+                                    <li className="flex items-center gap-2"><i data-lucide="play" class="w-4 h-4 text-red-600"></i> Sandy State Stories (34 Episodes)</li>
+                                    <li className="flex items-center gap-2"><i data-lucide="play" class="w-4 h-4 text-red-600"></i> Rangga Show (12 Episodes)</li>
+                                    <li className="flex items-center gap-2"><i data-lucide="play" class="w-4 h-4 text-red-600"></i> South East Gear (36 Episodes)</li>
+                                    <li className="flex items-center gap-2"><i data-lucide="play" class="w-4 h-4 text-red-600"></i> Shift and Gear</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Games Division */}
+                    <section id="games" className="py-24 bg-[#0d0d0d]">
+                        <div className="max-w-7xl mx-auto px-6">
+                            <div className="mb-16">
+                                <h2 className="text-4xl font-black uppercase mb-4">Games Development</h2>
+                                <div className="w-20 h-1 bg-red-600"></div>
+                            </div>
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                                <div className="bg-black border border-white/5 p-6 rounded-xl hover:border-red-600/50 transition-all group">
+                                    <div className="h-40 bg-red-900/20 rounded-lg mb-6 flex items-center justify-center">
+                                        <i data-lucide="gamepad-2" class="w-12 h-12 text-red-600 group-hover:scale-110 transition-transform"></i>
+                                    </div>
+                                    <span className="text-[10px] bg-green-500/20 text-green-500 px-2 py-1 rounded font-bold uppercase">Released</span>
+                                    <h4 className="text-xl font-bold mt-3">SSIA: Vanguard Chronicles</h4>
+                                    <p className="text-sm text-gray-500 mt-2">RPG Maker VX Ace • F2P Gacha</p>
+                                    <p className="text-xs text-gray-400 mt-4">Aug 17, 2025</p>
+                                </div>
+                                <div className="bg-black border border-white/5 p-6 rounded-xl hover:border-red-600/50 transition-all group">
+                                    <div className="h-40 bg-blue-900/20 rounded-lg mb-6 flex items-center justify-center">
+                                        <i data-lucide="layout" class="w-12 h-12 text-blue-600 group-hover:scale-110 transition-transform"></i>
+                                    </div>
+                                    <span className="text-[10px] bg-blue-500/20 text-blue-500 px-2 py-1 rounded font-bold uppercase">Announced</span>
+                                    <h4 className="text-xl font-bold mt-3">SSIA: ShadowFront</h4>
+                                    <p className="text-sm text-gray-500 mt-2">Godot Engine</p>
+                                    <p className="text-xs text-gray-400 mt-4">March 1, 2026</p>
+                                </div>
+                                <div className="bg-black border border-white/5 p-6 rounded-xl hover:border-red-600/50 transition-all group">
+                                    <div className="h-40 bg-yellow-900/20 rounded-lg mb-6 flex items-center justify-center">
+                                        <i data-lucide="sparkles" class="w-12 h-12 text-yellow-600 group-hover:scale-110 transition-transform"></i>
+                                    </div>
+                                    <span className="text-[10px] bg-yellow-500/20 text-yellow-500 px-2 py-1 rounded font-bold uppercase">Upcoming</span>
+                                    <h4 className="text-xl font-bold mt-3">Sandy State Stories</h4>
+                                    <p className="text-sm text-gray-500 mt-2">TSBC Original Game</p>
+                                    <p className="text-xs text-gray-400 mt-4">TBA</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Team */}
+                    <section id="team" className="py-24 px-6 max-w-7xl mx-auto">
+                        <div className="mb-16">
+                            <h2 className="text-4xl font-black uppercase mb-4">The Core Team</h2>
+                            <div className="w-20 h-1 bg-red-600"></div>
+                        </div>
+                        <div className="grid grid-cols-2 lg:grid-cols-5 gap-8">
+                            {[
+                                { n: "Naufal Ammariiq", r: "Founder" },
+                                { n: "Halvino Nataprawira", r: "Co-Founder / HRD" },
+                                { n: "Abyan Areli", r: "Financial Officer" },
+                                { n: "Muhammad Fadhlan", r: "Operations Officer" },
+                                { n: "Z. Hugo Razaaq", r: "Technology Officer" }
+                            ].map((m, i) => (
+                                <div key={i} className="text-center">
+                                    <div className="w-24 h-24 bg-gradient-to-tr from-red-600 to-red-400 rounded-full mx-auto mb-4 flex items-center justify-center font-black text-2xl shadow-lg shadow-red-600/20">
+                                        {m.n.charAt(0)}
+                                    </div>
+                                    <h4 className="font-bold text-white">{m.n}</h4>
+                                    <p className="text-[10px] text-gray-500 uppercase tracking-widest mt-1">{m.r}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </section>
+
+                    {/* Footer / Ops */}
+                    <footer className="bg-black border-t border-white/5 py-20 px-6">
+                        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-16">
+                            <div>
+                                <div className="flex items-center gap-3 mb-6">
+                                    <div className="bg-red-600 text-white font-black px-2 py-1 rounded">10</div>
+                                    <span className="font-black text-xl tracking-tighter uppercase">TSBC</span>
+                                </div>
+                                <p className="text-gray-500 text-sm leading-relaxed">
+                                    Established 2014. Evolving from TV10 Indonesia to a global broadcasting and gaming community.
+                                </p>
+                            </div>
+                            <div>
+                                <h5 className="font-bold uppercase tracking-widest text-sm mb-6 text-red-500">Operating Hours</h5>
+                                <div className="space-y-3 text-sm text-gray-400">
+                                    <div className="flex justify-between"><span>Mon - Fri</span> <span className="text-white">9:00 AM - 5:30 PM</span></div>
+                                    <div className="flex justify-between"><span>Sunday</span> <span className="text-white">9:00 AM - 5:30 PM</span></div>
+                                    <p className="text-[10px] text-gray-600 italic mt-4">Note: Voluntary crew-based schedule.</p>
+                                </div>
+                            </div>
+                            <div>
+                                <h5 className="font-bold uppercase tracking-widest text-sm mb-6 text-red-500">Legacy</h5>
+                                <div className="text-xs text-gray-500 space-y-2">
+                                    <p>• TV10 Indonesia Era (2015-2020)</p>
+                                    <p>• Pre-TV10 Era (2014)</p>
+                                    <p>• TSBC Modern Era (2024-Present)</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="max-w-7xl mx-auto mt-20 pt-8 border-t border-white/5 text-center text-[10px] text-gray-700 tracking-[0.3em] uppercase">
+                            &copy; 2026 TenStudios Broadcasting Community. All Rights Reserved.
+                        </div>
+                    </footer>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
 </body>
 </html>
