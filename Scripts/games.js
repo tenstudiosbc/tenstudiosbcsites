@@ -20,25 +20,25 @@ const gamesData = [
         id: "ssia-shadowfront",
         title: "SSIA: ShadowFront",
         engine: "Godot Engine",
-        genre: "Tactical Shooter",
+        genre: "2D / RPG",
         platforms: "PC",
         status: "Announced",
         statusColor: "blue",
         releaseDate: "TBA (Est. 2026)",
-        image: "https://images.unsplash.com/photo-1614728263952-84ea256f9679?auto=format&fit=crop&q=80&w=800", // Placeholder
+        image: "https://i.supaimg.com/b3da42ad-02aa-4f1a-b499-acc775586122/38ad6214-60ac-4dcc-b9b6-31b31c84332a.png", // Placeholder
         link: "#",
         description: "Next-gen tactical operations within the Sierra Secret Investigation Agency."
     },
     {
         id: "sandy-state-game",
         title: "Sandy State Stories",
-        engine: "TSBC Custom",
-        genre: "Adventure",
+        engine: "RPG Maker MV",
+        genre: "Action, Open World",
         platforms: "TBA",
         status: "Upcoming",
         statusColor: "yellow",
         releaseDate: "TBA",
-        image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&q=80&w=800", // Placeholder
+        image: "https://i.supaimg.com/b3da42ad-02aa-4f1a-b499-acc775586122/9061d1d5-06a1-4a99-9361-b7a0e29c9dd3.png", // Placeholder
         link: "#",
         description: "The immersive game adaptation of the long-running YouTube series."
     }
