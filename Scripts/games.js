@@ -7,12 +7,12 @@ const gamesData = [
         id: "ssia-vanguard",
         title: "SSIA: Vanguard Chronicles",
         engine: "RPG Maker VX Ace (Windows) & RPG Maker MV (Mobile)",
-        genre: "2D Gacha / RPG",
+        genre: "2D Gacha / Semi-Open World RPG",
         platforms: "Mobile & Windows",
         status: "Released",
         statusColor: "green", // green, blue, yellow, or red
         releaseDate: "Aug 17, 2025",
-        image: "https://img.itch.zone/aW1nLzI0OTUzNzA1LmpwZw==/original/gyEMFM.jpg",
+        image: "https://i.supaimg.com/b3da42ad-02aa-4f1a-b499-acc775586122/5180490d-29c0-4f01-bea8-89cc4c8b49cf.jpg",
         link: "https://tenstudiosbc.itch.io/ssia-vanguard-chronicles",
         description: "A strategic 2D gacha game set in the SSIA Universe."
     },
@@ -24,7 +24,7 @@ const gamesData = [
         platforms: "PC",
         status: "Announced",
         statusColor: "blue",
-        releaseDate: "TBA (Est. 2026)",
+        releaseDate: "TBA (Est. 2029)",
         image: "https://i.supaimg.com/b3da42ad-02aa-4f1a-b499-acc775586122/38ad6214-60ac-4dcc-b9b6-31b31c84332a.png", // Placeholder
         link: "#",
         description: "Next-gen tactical operations within the Sierra Secret Investigation Agency."
@@ -34,7 +34,7 @@ const gamesData = [
         title: "Sandy State Stories",
         engine: "RPG Maker MV",
         genre: "Action, Open World",
-        platforms: "TBA",
+        platforms: "Windows, Android",
         status: "Upcoming",
         statusColor: "yellow",
         releaseDate: "TBA",
