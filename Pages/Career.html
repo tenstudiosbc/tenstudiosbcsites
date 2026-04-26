@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Careers at TSBC - Join our non-profit broadcasting and game development community.">
+    <title>Careers | TSBC Official</title>
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #0a0a0a; color: white; margin: 0; scroll-behavior: smooth; overflow-x: hidden; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.08); }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0a0a0a; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #dc2626; }
+        .nav-link { cursor: pointer; transition: all 0.3s ease; }
+        
+        /* Grid Image Hover Effects */
+        .img-grid-item { overflow: hidden; position: relative; border-radius: 1rem; border: 1px solid rgba(255,255,255,0.1); transition: transform 0.3s ease; }
+        .img-grid-item:hover { transform: translateY(-5px); border-color: #dc2626; }
+        .img-grid-item img { transition: transform 0.5s ease; width: 100%; height: 100%; object-fit: cover; }
+        .img-grid-item:hover img { transform: scale(1.05); }
+
+        /* Job Card Animation */
+        .job-card { transition: all 0.3s ease; }
+        .job-card:hover { transform: translateY(-3px); box-shadow: 0 10px 30px -10px rgba(220, 38, 38, 0.2); border-color: rgba(220, 38, 38, 0.4); }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-300 bg-black/95 border-b border-white/5 py-4 shadow-2xl">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-3 nav-link hover:opacity-80">
+                <div class="bg-red-600 text-white font-black px-2 py-1 rounded shadow-lg shadow-red-600/20">TSBC</div>
+                <span class="font-black text-xl tracking-tighter uppercase hidden sm:block">TSBC Official</span>
+            </a>
+            <div class="hidden md:flex gap-8 text-sm font-bold uppercase tracking-widest text-gray-400">
+                <a href="index.html" class="nav-link hover:text-red-500">Home</a>
+                <a href="index.html#about" class="nav-link hover:text-red-500">About</a>
+                <a href="index.html#portfolio" class="nav-link hover:text-red-500">Portfolio</a>
+                <a href="index.html#games" class="nav-link hover:text-red-500">Games</a>
+                <a href="careers.html" class="nav-link text-red-500">Careers</a>
+            </div>
+            <div class="flex gap-4">
+                <a href="#" class="hover:text-red-500 transition-colors"><i data-lucide="youtube" class="w-5 h-5"></i></a>
+                <a href="#" class="hover:text-red-500 transition-colors"><i data-lucide="twitter" class="w-5 h-5"></i></a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-32 pb-20">
+
+        <!-- Header / Disclaimer Section -->
+        <section class="max-w-7xl mx-auto px-6 text-center mb-20">
+            <div class="inline-block border border-red-600/50 px-4 py-1 rounded-full text-red-500 text-xs font-bold tracking-widest uppercase mb-6 bg-red-600/5">
+                Join The Crew
+            </div>
+            <h1 class="text-5xl md:text-7xl font-black mb-6 leading-none tracking-tighter uppercase">
+                Create With <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-400">Purpose</span>
+            </h1>
+            <p class="max-w-2xl mx-auto text-gray-400 text-lg md:text-xl mb-10">
+                Become a part of our growing legacy. We are looking for passionate individuals to join our production and development teams.
+            </p>
+            
+            <!-- Non-Profit Notice -->
+            <div class="glass max-w-3xl mx-auto p-6 rounded-2xl border-l-4 border-red-600 text-left flex flex-col md:flex-row items-start md:items-center gap-6">
+                <div class="p-3 bg-red-600/10 rounded-full">
+                    <i data-lucide="info" class="w-8 h-8 text-red-500"></i>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold uppercase mb-2">Community Notice</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        <strong>TSBC is a Non-Profit Community.</strong> We are actively looking for creative individuals to join us as <strong>Production Members</strong>. 
+                        Please note that all positions are voluntary. We are driven by love, ambition, and a shared passion for cinematic storytelling and game development.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Behind the Scenes Image Grid -->
+        <section class="max-w-7xl mx-auto px-6 mb-24">
+            <div class="mb-10 text-center">
+                <h2 class="text-3xl font-black uppercase mb-2">Behind The Scenes</h2>
+                <div class="w-16 h-1 bg-red-600 mx-auto"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 h-auto lg:h-64">
+                <div class="img-grid-item h-64 lg:h-full">
+                    <img src="https://i.supaimg.com/b3da42ad-02aa-4f1a-b499-acc775586122/d8ccf438-0b8d-477b-bb5c-24b72eabe737.jpg" alt="TSBC Production Set 1">
+                </div>
+                <div class="img-grid-item h-64 lg:h-full">
+                    <img src="https://i.supaimg.com/b3da42ad-02aa-4f1a-b499-acc775586122/d6faea0c-9def-452a-ac43-330a8035310a.jpg" alt="TSBC Production Set 2">
+                </div>
+                <div class="img-grid-item h-64 lg:h-full">
+                    <img src="https://i.supaimg.com/b3da42ad-02aa-4f1a-b499-acc775586122/db7132bf-76b4-4973-84f0-dc039b0c7b2b.jpg" alt="TSBC Production Set 3">
+                </div>
+                <div class="img-grid-item h-64 lg:h-full">
+                    <img src="https://i.supaimg.com/b3da42ad-02aa-4f1a-b499-acc775586122/2c596ed0-22ee-44e5-96a8-85770a1e1154.jpg" alt="TSBC Production Set 4">
+                </div>
+            </div>
+        </section>
+
+        <!-- Open Positions Section -->
+        <section class="max-w-7xl mx-auto px-6">
+            <div class="mb-12">
+                <h2 class="text-4xl font-black uppercase mb-4">Available Positions</h2>
+                <div class="w-20 h-1 bg-red-600"></div>
+            </div>
+
+            <!-- Dynamic Grid Container -->
+            <div id="positions-container" class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Javascript will inject job cards here -->
+            </div>
+            
+            <div class="mt-12 text-center text-gray-500 text-sm">
+                <p>Don't see a role that fits? Send us an open application at <a href="mailto:contact@tenstudiosbc.my.id" class="text-red-500 hover:underline">contact@tenstudiosbc.my.id</a></p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black border-t border-white/5 py-20 px-6 mt-10">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-16">
+            <div>
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="bg-red-600 text-white font-black px-2 py-1 rounded">TSBC</div>
+                    <span class="font-black text-xl tracking-tighter uppercase">TSBC</span>
+                </div>
+                <p class="text-gray-500 text-sm">Established 2014. From TV10 Indonesia to a global community.</p>
+            </div>
+            <div>
+                <h5 class="font-bold uppercase tracking-widest text-xs mb-6 text-red-500">Quick Navigation</h5>
+                <ul class="space-y-3 text-sm text-gray-500 font-bold">
+                    <li><a href="index.html" class="nav-link hover:text-white">Home</a></li>
+                    <li><a href="index.html#about" class="nav-link hover:text-white">Our Story</a></li>
+                    <li><a href="index.html#portfolio" class="nav-link hover:text-white">Portfolio</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="font-bold uppercase tracking-widest text-xs mb-6 text-red-500">Community & Pages</h5>
+                <ul class="space-y-3 text-sm text-gray-500 font-bold">
+                    <li><a href="contact.html" class="hover:text-white transition-colors">Contact Us</a></li>
+                    <li><a href="https://ssiavc.tenstudiosbc.my.id/" target="_blank" class="hover:text-white transition-colors">SSIA Vanguard Chronicles</a></li>
+                    <li><a href="https://tsbcgames.tenstudiosbc.my.id/" target="_blank" class="hover:text-white transition-colors">TSBC Games</a></li>
+                    <li><a href="helpcenter.html" class="hover:text-white transition-colors">Help Centre</a></li>
+                    <li><a href="careers.html" class="text-white transition-colors">Careers</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="font-bold uppercase tracking-widest text-xs mb-6 text-red-500">Legacy</h5>
+                <p class="text-[10px] text-gray-600 uppercase font-bold tracking-widest mb-2">TV10 INDONESIA ERA (2015-2020)</p>
+                <p class="text-xs text-gray-500">Core Crew & Volunteer Network</p>
+                <p class="text-[9px] text-gray-700 mt-4 uppercase">WIB Hours: 9:00 AM - 5:30 PM</p>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto mt-20 pt-8 border-t border-white/5 text-center text-[10px] text-gray-700 tracking-[0.3em] uppercase font-bold">
+            &copy; 2026 TenStudios Broadcasting Community
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE SCRIPTS -->
+    <script>
+        // =====================================================================
+        // 🛠️ EDIT POSITIONS HERE
+        // It is incredibly easy to add or remove job positions. 
+        // Just add a new block {} inside this array!
+        // =====================================================================
+        const availablePositions = [
+            {
+                title: "Video Editor",
+                department: "Media Production",
+                tags: ["Remote", "Volunteer", "Part-Time"],
+                description: "Responsible for crafting engaging narratives by editing footage for the SSIA Universe Series and other network shows.",
+                requirements: [
+                    "Experience with Olive Video Editor (or willingness to learn)",
+                    "Strong sense of pacing, audio mixing, and cinematic storytelling",
+                    "Able to dedicate a few hours a week to community projects"
+                ],
+                // Change the email address or link to a google form
+                applyLink: "mailto:tenstudiosbc.id@gmail.com?subject=Application:%20Video%20Editor" 
+            },
+            {
+                title: "Game Developer (RPG Maker)",
+                department: "Games Division",
+                tags: ["Remote", "Volunteer", "Project-Based"],
+                description: "Design levels, script events, and build immersive 2D environments for our upcoming game titles.",
+                requirements: [
+                    "Strong experience with RPG Maker MV or RPG Maker VX Ace",
+                    "Familiarity with eventing, variables, and switches",
+                    "Knowledge of JavaScript (MV plugins) or Ruby (VX Ace scripts) is a major plus"
+                ],
+                applyLink: "mailto:tenstudiosbc.id@gmail.com?subject=Application:%20RPG%20Maker%20Developer"
+            },
+            {
+                title: "Graphic / UI Designer",
+                department: "Creative Department",
+                tags: ["Remote", "Volunteer", "Flexible"],
+                description: "Create eye-catching thumbnails, promotional materials, and in-game UI assets for our series and games.",
+                requirements: [
+                    "Proficiency in Canva for creating quick, high-quality designs",
+                    "Good understanding of typography, layout, and color theory",
+                    "Portfolio showcasing previous design work or thumbnails"
+                ],
+                applyLink: "mailto:tenstudiosbc.id@gmail.com?subject=Application:%20Graphic%20Designer"
+            },
+            {
+                title: "Voice Actor",
+                department: "Media & Games",
+                tags: ["Remote", "Volunteer", "Casting"],
+                description: "Bring our characters to life! We are currently casting for various roles across our series and video games.",
+                requirements: [
+                    "Good quality microphone setup with minimal background noise",
+                    "Ability to express range of emotions and take directorial feedback",
+                    "Fluency in English (Indonesian is a plus)"
+                ],
+                applyLink: "mailto:tenstudiosbc.id@gmail.com?subject=Application:%20Voice%20Actor"
+            }
+        ];
+        // =====================================================================
+
+
+        // Function to render the job positions to the HTML dynamically
+        function renderPositions() {
+            const container = document.getElementById('positions-container');
+            
+            if(availablePositions.length === 0) {
+                container.innerHTML = `
+                    <div class="col-span-full text-center glass p-10 rounded-2xl">
+                        <i data-lucide="inbox" class="w-12 h-12 text-gray-600 mx-auto mb-4"></i>
+                        <h3 class="text-xl font-bold text-gray-400">No Open Positions at the Moment</h3>
+                        <p class="text-sm text-gray-500 mt-2">Check back later or send us a general application.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const html = availablePositions.map(job => `
+                <div class="glass job-card p-8 rounded-2xl flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-2xl font-bold">${job.title}</h3>
+                                <p class="text-red-500 text-sm font-bold uppercase tracking-widest mt-1">${job.department}</p>
+                            </div>
+                            <div class="hidden sm:flex gap-2 flex-wrap justify-end max-w-[150px]">
+                                ${job.tags.map(tag => `<span class="bg-white/5 border border-white/10 px-2 py-1 rounded text-[10px] uppercase font-bold text-gray-400">${tag}</span>`).join('')}
+                            </div>
+                        </div>
+                        
+                        <!-- Mobile Tags -->
+                        <div class="flex sm:hidden gap-2 flex-wrap mb-4">
+                            ${job.tags.map(tag => `<span class="bg-white/5 border border-white/10 px-2 py-1 rounded text-[10px] uppercase font-bold text-gray-400">${tag}</span>`).join('')}
+                        </div>
+
+                        <p class="text-gray-400 mb-6 text-sm leading-relaxed">${job.description}</p>
+                        
+                        <div class="mb-8">
+                            <h4 class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-3 flex items-center gap-2">
+                                <i data-lucide="check-square" class="w-4 h-4 text-red-500"></i> Requirements
+                            </h4>
+                            <ul class="space-y-2">
+                                ${job.requirements.map(req => `
+                                    <li class="flex items-start gap-2 text-sm text-gray-300">
+                                        <div class="w-1.5 h-1.5 rounded-full bg-red-600 mt-1.5 shrink-0"></div>
+                                        <span>${req}</span>
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="pt-6 border-t border-white/10 mt-auto">
+                        <a href="${job.applyLink}" target="_blank" class="w-full block text-center bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg transition-colors uppercase tracking-widest text-sm flex justify-center items-center gap-2">
+                            Apply For Position <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+            `).join('');
+
+            container.innerHTML = html;
+        }
+
+        // Initialize Page Scripts
+        window.addEventListener('DOMContentLoaded', () => {
+            // Render the positions
+            renderPositions();
+            
+            // Render Lucide Icons
+            lucide.createIcons();
+        });
+    </script>
+</body>
+</html>
