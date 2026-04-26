@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="TSBC Help Centre — Find answers to your questions about TSBC games, media, and community.">
+    <meta name="description"
+        content="TSBC Help Centre — Find answers to your questions about TSBC games, media, and community.">
     <title>Help Center | TSBC Official</title>
     <link rel="icon" type="image/png" href="../favicon.png">
     <!-- Tailwind CSS -->
@@ -14,7 +16,7 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-2WK59XET1E"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+        function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
         gtag('config', 'G-2WK59XET1E');
     </script>
@@ -38,16 +40,38 @@
         }
 
         /* Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #0a0a0a; }
-        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #dc2626; }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #dc2626;
+        }
 
         /* Animations */
-        .page-transition { animation: fadeIn 0.4s ease-out; }
+        .page-transition {
+            animation: fadeIn 0.4s ease-out;
+        }
+
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to   { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* Hero gradient blob */
@@ -56,7 +80,7 @@
             width: 600px;
             height: 600px;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(220,38,38,0.12) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(220, 38, 38, 0.12) 0%, transparent 70%);
             pointer-events: none;
             top: 50%;
             left: 50%;
@@ -64,7 +88,10 @@
         }
 
         /* Sticky sidebar active state */
-        .sidebar-link.active { color: #ef4444; }
+        .sidebar-link.active {
+            color: #ef4444;
+        }
+
         .sidebar-link.active::before {
             content: '';
             position: absolute;
@@ -77,44 +104,45 @@
         }
 
         /* Accordion icon rotation handled inline via JS */
-        [data-searchable] { transition: opacity 0.2s; }
+        [data-searchable] {
+            transition: opacity 0.2s;
+        }
     </style>
 </head>
+
 <body class="page-transition">
 
-    <!-- ─── NAVIGATION (identical structure to index.html) ─── -->
-    <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-300 bg-transparent py-6">
-        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
-            <a href="../index.html" class="flex items-center gap-3 cursor-pointer">
-                <div class="bg-red-600 text-white font-black px-2 py-1 rounded shadow-lg shadow-red-600/20">10</div>
-                <span class="font-black text-xl tracking-tighter uppercase">TSBC Official</span>
-            </a>
-            <div class="hidden md:flex gap-8 text-sm font-bold uppercase tracking-widest text-gray-400">
-                <a href="../index.html" class="hover:text-red-500 transition-colors">Home</a>
-                <a href="../index.html#portfolio" class="hover:text-red-500 transition-colors">Portfolio</a>
-                <a href="../index.html#games" class="hover:text-red-500 transition-colors">Games</a>
-                <a href="contact.html" class="hover:text-red-500 transition-colors">Contact</a>
-                <span class="text-red-500 uppercase">Help Centre</span>
-            </div>
-            <div class="flex gap-4">
-                <a href="#" id="link-youtube" class="hover:text-red-500 transition-colors"><i data-lucide="youtube" class="w-5 h-5"></i></a>
-                <a href="#" id="link-twitter" class="hover:text-red-500 transition-colors"><i data-lucide="twitter" class="w-5 h-5"></i></a>
-            </div>
-        </div>
-    </nav>
+    <!-- Navigation (loaded from Components/Navbar.html) -->
+    <div id="navbar-container"></div>
+    <script>
+        fetch('../Components/Navbar.html')
+            .then(res => res.text())
+            .then(html => {
+                // Rewrite paths for /Pages/ context
+                html = html.replace(/href="Pages\//g, 'href="');
+                document.getElementById('navbar-container').innerHTML = html;
+                // Highlight current page
+                const currentLink = document.querySelector('[data-nav-link="helpcenter"]');
+                if (currentLink) currentLink.classList.add('text-red-500');
+                // Re-initialize Lucide icons
+                if (typeof lucide !== 'undefined') lucide.createIcons();
+            })
+            .catch(err => console.error('Failed to load Navbar:', err));
+    </script>
 
     <!-- ─── HERO ─────────────────────────────────────────────── -->
     <section class="relative pt-44 pb-24 px-6 text-center overflow-hidden">
         <div class="hero-blob"></div>
 
         <div class="relative z-10">
-            <div class="inline-flex items-center gap-2 border border-red-600/50 px-4 py-1 rounded-full text-red-500 text-xs font-bold tracking-widest uppercase mb-6 bg-red-600/5">
+            <div
+                class="inline-flex items-center gap-2 border border-red-600/50 px-4 py-1 rounded-full text-red-500 text-xs font-bold tracking-widest uppercase mb-6 bg-red-600/5">
                 <i data-lucide="life-buoy" class="w-3 h-3"></i>
                 Help Centre
             </div>
 
             <h1 class="text-5xl md:text-7xl font-black leading-none tracking-tighter uppercase mb-5">
-                How can we<br/>
+                How can we<br />
                 <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-400">help you?</span>
             </h1>
             <p class="text-gray-500 text-lg mb-10 max-w-xl mx-auto">
@@ -123,15 +151,11 @@
 
             <!-- Search Bar -->
             <div class="max-w-2xl mx-auto relative">
-                <i data-lucide="search" class="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500 pointer-events-none"></i>
-                <input
-                    id="help-search"
-                    type="text"
-                    placeholder="Search articles, games, guides…"
-                    autocomplete="off"
+                <i data-lucide="search"
+                    class="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500 pointer-events-none"></i>
+                <input id="help-search" type="text" placeholder="Search articles, games, guides…" autocomplete="off"
                     class="w-full glass rounded-2xl pl-14 pr-6 py-5 text-white placeholder-gray-600 text-base font-medium focus:outline-none focus:border-red-600/60 transition-all"
-                    style="background: rgba(255,255,255,0.04);"
-                />
+                    style="background: rgba(255,255,255,0.04);" />
             </div>
 
             <!-- Quick Links -->
@@ -156,8 +180,10 @@
                 </nav>
                 <div class="mt-10 glass rounded-2xl p-5">
                     <p class="text-xs font-bold uppercase tracking-widest text-red-500 mb-3">Still need help?</p>
-                    <p class="text-xs text-gray-500 leading-relaxed mb-4">Our team responds during WIB business hours.</p>
-                    <a href="contact.html" class="block text-center bg-red-600 hover:bg-red-700 transition-colors text-white font-bold text-xs py-3 px-4 rounded-xl uppercase tracking-widest">
+                    <p class="text-xs text-gray-500 leading-relaxed mb-4">Our team responds during WIB business hours.
+                    </p>
+                    <a href="contact.html"
+                        class="block text-center bg-red-600 hover:bg-red-700 transition-colors text-white font-bold text-xs py-3 px-4 rounded-xl uppercase tracking-widest">
                         Contact Us
                     </a>
                 </div>
@@ -171,7 +197,8 @@
             <div id="no-results" class="glass rounded-2xl p-12 text-center mb-10" hidden>
                 <i data-lucide="search-x" class="w-10 h-10 text-gray-600 mx-auto mb-4"></i>
                 <p class="font-bold text-gray-400 text-lg">No articles found.</p>
-                <p class="text-gray-600 text-sm mt-2">Try a different keyword or <a href="contact.html" class="text-red-500 hover:underline">contact us</a> directly.</p>
+                <p class="text-gray-600 text-sm mt-2">Try a different keyword or <a href="contact.html"
+                        class="text-red-500 hover:underline">contact us</a> directly.</p>
             </div>
 
             <!-- Categories & Accordions -->
@@ -209,12 +236,14 @@
             </div>
             <div>
                 <h5 class="font-bold uppercase tracking-widest text-xs mb-6 text-red-500">Legacy</h5>
-                <p class="text-[10px] text-gray-600 uppercase font-bold tracking-widest mb-2">TV10 INDONESIA ERA (2015–2020)</p>
+                <p class="text-[10px] text-gray-600 uppercase font-bold tracking-widest mb-2">TV10 INDONESIA ERA
+                    (2015–2020)</p>
                 <p class="text-xs text-gray-500">Core Crew & Volunteer Network</p>
                 <p class="text-[9px] text-gray-700 mt-4 uppercase">WIB Hours: 9:00 AM – 5:30 PM</p>
             </div>
         </div>
-        <div class="max-w-7xl mx-auto mt-20 pt-8 border-t border-white/5 text-center text-[10px] text-gray-700 tracking-[0.3em] uppercase font-bold">
+        <div
+            class="max-w-7xl mx-auto mt-20 pt-8 border-t border-white/5 text-center text-[10px] text-gray-700 tracking-[0.3em] uppercase font-bold">
             &copy; 2026 TenStudios Broadcasting Community
         </div>
     </footer>
@@ -287,4 +316,5 @@
     </script>
 
 </body>
+
 </html>
