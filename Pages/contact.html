@@ -226,38 +226,18 @@
         </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-black border-t border-white/5 py-20 px-6 mt-10">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-16">
-            <div>
-                <div class="flex items-center gap-3 mb-6">
-                    <div class="bg-red-600 text-white font-black px-2 py-1 rounded">10</div>
-                    <span class="font-black text-xl tracking-tighter uppercase">TSBC</span>
-                </div>
-                <p class="text-gray-500 text-sm">Established 2014. From TV10 Indonesia to a global community.</p>
-            </div>
-            <div>
-                <h5 class="font-bold uppercase tracking-widest text-xs mb-6 text-red-500">Links</h5>
-                <ul class="space-y-3 text-sm text-gray-500 font-bold">
-                    <li><a href="../index.html" class="nav-link hover:text-white">Home</a></li>
-                </ul>
-            </div>
-            <div>
-                <h5 class="font-bold uppercase tracking-widest text-xs mb-6 text-red-500">Contact Team</h5>
-                <p class="text-sm text-gray-400">tenstudiosbc.id@gmail.com</p>
-                <p class="text-sm text-gray-400">Volunteer Led Organization</p>
-            </div>
-            <div>
-                <h5 class="font-bold uppercase tracking-widest text-xs mb-6 text-red-500">Legacy</h5>
-                <p class="text-[10px] text-gray-600 uppercase font-bold tracking-widest">TV10 INDONESIA ERA (2015-2020)
-                </p>
-            </div>
-        </div>
-        <div
-            class="max-w-7xl mx-auto mt-20 pt-8 border-t border-white/5 text-center text-[10px] text-gray-700 tracking-[0.3em] uppercase font-bold">
-            &copy; 2026 TenStudios Broadcasting Community
-        </div>
-    </footer>
+    <!-- Footer (loaded from Components/Footer.html) -->
+    <div id="footer-container"></div>
+    <script>
+        fetch('../Components/Footer.html')
+            .then(res => res.text())
+            .then(html => {
+                // Rewrite paths for /Pages/ context
+                html = html.replace(/href="Pages\//g, 'href="');
+                document.getElementById('footer-container').innerHTML = html;
+            })
+            .catch(err => console.error('Failed to load Footer:', err));
+    </script>
 
     <script>
         window.addEventListener('DOMContentLoaded', () => {

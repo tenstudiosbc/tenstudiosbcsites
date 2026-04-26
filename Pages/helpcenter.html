@@ -210,43 +210,18 @@
         </div>
     </main>
 
-    <!-- ─── FOOTER (matches index.html) ─────────────────────── -->
-    <footer class="bg-black border-t border-white/5 py-20 px-6 mt-10">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-16">
-            <div>
-                <div class="flex items-center gap-3 mb-6">
-                    <div class="bg-red-600 text-white font-black px-2 py-1 rounded">10</div>
-                    <span class="font-black text-xl tracking-tighter uppercase">TSBC</span>
-                </div>
-                <p class="text-gray-500 text-sm">Established 2014. From TV10 Indonesia to a global community.</p>
-            </div>
-            <div>
-                <h5 class="font-bold uppercase tracking-widest text-xs mb-6 text-red-500">Quick Navigation</h5>
-                <ul class="space-y-3 text-sm text-gray-500 font-bold">
-                    <li><a href="../index.html" class="hover:text-white transition-colors">Home</a></li>
-                    <li><a href="../index.html#portfolio" class="hover:text-white transition-colors">Portfolio</a></li>
-                    <li><a href="../index.html#games" class="hover:text-white transition-colors">Games</a></li>
-                </ul>
-            </div>
-            <div>
-                <h5 class="font-bold uppercase tracking-widest text-xs mb-6 text-red-500">Help Centre</h5>
-                <ul id="footer-help-links" class="space-y-3 text-sm text-gray-500 font-bold">
-                    <!-- Rendered dynamically -->
-                </ul>
-            </div>
-            <div>
-                <h5 class="font-bold uppercase tracking-widest text-xs mb-6 text-red-500">Legacy</h5>
-                <p class="text-[10px] text-gray-600 uppercase font-bold tracking-widest mb-2">TV10 INDONESIA ERA
-                    (2015–2020)</p>
-                <p class="text-xs text-gray-500">Core Crew & Volunteer Network</p>
-                <p class="text-[9px] text-gray-700 mt-4 uppercase">WIB Hours: 9:00 AM – 5:30 PM</p>
-            </div>
-        </div>
-        <div
-            class="max-w-7xl mx-auto mt-20 pt-8 border-t border-white/5 text-center text-[10px] text-gray-700 tracking-[0.3em] uppercase font-bold">
-            &copy; 2026 TenStudios Broadcasting Community
-        </div>
-    </footer>
+    <!-- Footer (loaded from Components/Footer.html) -->
+    <div id="footer-container"></div>
+    <script>
+        fetch('../Components/Footer.html')
+            .then(res => res.text())
+            .then(html => {
+                // Rewrite paths for /Pages/ context
+                html = html.replace(/href="Pages\//g, 'href="');
+                document.getElementById('footer-container').innerHTML = html;
+            })
+            .catch(err => console.error('Failed to load Footer:', err));
+    </script>
 
     <!-- ─── DATA + LOGIC ──────────────────────────────────────── -->
     <!-- Point this to the correct relative path for your Pages/ folder -->
