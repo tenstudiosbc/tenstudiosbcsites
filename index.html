@@ -50,10 +50,10 @@
 
 <body>
 
-    <!-- Navigation (loaded from Components/Navbar.html) -->
+    <!-- Navigation (loaded from Components/navbar.html) -->
     <div id="navbar-container"></div>
     <script>
-        fetch('Components/Navbar.html')
+        fetch('Components/navbar.html')
             .then(res => res.text())
             .then(html => {
                 // Rewrite paths for root-level context
@@ -194,10 +194,10 @@
 
     </main>
 
-    <!-- Footer (loaded from Components/Footer.html) -->
+    <!-- Footer (loaded from Components/footer.html) -->
     <div id="footer-container"></div>
     <script>
-        fetch('Components/Footer.html')
+        fetch('Components/footer.html')
             .then(res => res.text())
             .then(html => {
                 // Rewrite paths for root-level context
@@ -272,6 +272,7 @@
             // Navbar Scroll Effect
             window.addEventListener('scroll', () => {
                 const nav = document.getElementById('navbar');
+                if (!nav) return;
                 if (window.scrollY > 50) {
                     nav.classList.add('bg-black/95', 'py-4', 'shadow-2xl', 'border-b', 'border-white/5');
                     nav.classList.remove('bg-transparent', 'py-6');
