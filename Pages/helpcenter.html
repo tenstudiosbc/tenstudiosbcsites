@@ -79,6 +79,7 @@
     </script>
 
     <!-- ─── HERO ─────────────────────────────────────────────── -->
+    <main>
     <section class="relative pt-44 pb-24 px-6 text-center overflow-hidden">
         <div class="hero-blob"></div>
 
@@ -117,7 +118,7 @@
     <div class="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
 
     <!-- ─── MAIN CONTENT ─────────────────────────────────────── -->
-    <main class="max-w-7xl mx-auto px-6 py-20 flex flex-col lg:flex-row gap-16">
+    <div class="max-w-7xl mx-auto px-6 py-20 flex flex-col lg:flex-row gap-16">
 
         <!-- Sidebar (desktop only) -->
         <aside class="hidden lg:block w-60 flex-shrink-0">
@@ -156,6 +157,7 @@
             </div>
 
         </div>
+    </div>
     </main>
 
     <!-- Footer (loaded from Components/footer.html) -->
@@ -190,7 +192,6 @@
 
             // Build sidebar nav from helpData
             const sidebar = document.getElementById('sidebar-nav');
-            const footerLinks = document.getElementById('footer-help-links');
 
             if (sidebar && typeof helpData !== 'undefined') {
                 sidebar.innerHTML = helpData.map(cat => `
@@ -199,10 +200,6 @@
                         <i data-lucide="${cat.icon}" class="w-4 h-4 ${cat.color} flex-shrink-0"></i>
                         <span>${cat.title}</span>
                     </a>
-                `).join('');
-
-                footerLinks.innerHTML = helpData.map(cat => `
-                    <li><a href="#cat-${cat.id}" class="hover:text-white transition-colors">${cat.title}</a></li>
                 `).join('');
             }
 
