@@ -1,0 +1,362 @@
+<!-- =====================================================================
+     TEAM CAROUSEL COMPONENT
+     Self-contained: includes its own CSS, HTML structure, and JS engine.
+     Loaded via fetch() from index.html.
+     ===================================================================== -->
+
+<style>
+    /* ── Team Carousel ─────────────────────────────────────── */
+    .carousel-viewport {
+        position: relative;
+        height: 520px;
+        perspective: 1200px;
+        overflow: hidden;
+    }
+
+    .carousel-track {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+
+    .carousel-card {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 340px;
+        height: 460px;
+        border-radius: 1.5rem;
+        overflow: hidden;
+        transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+        cursor: pointer;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .carousel-card .card-bg {
+        position: absolute;
+        inset: 0;
+        background-size: cover;
+        background-position: center top;
+        transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .carousel-card:hover .card-bg {
+        transform: scale(1.05);
+    }
+
+    .carousel-card .card-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.1) 100%);
+        transition: background 0.5s ease;
+    }
+
+    .carousel-card .card-content {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 2rem;
+        transform: translateY(0);
+        transition: transform 0.5s ease, opacity 0.5s ease;
+    }
+
+    /* Active (center) card */
+    .carousel-card.is-active {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+        z-index: 10;
+        box-shadow: 0 30px 80px -20px rgba(220, 38, 38, 0.3), 0 0 40px rgba(0,0,0,0.5);
+        border-color: rgba(220, 38, 38, 0.3);
+    }
+
+    /* Side cards */
+    .carousel-card.is-prev {
+        transform: translate(calc(-50% - 380px), -50%) scale(0.82) rotateY(8deg);
+        opacity: 0.45;
+        z-index: 5;
+        filter: brightness(0.5);
+    }
+
+    .carousel-card.is-next {
+        transform: translate(calc(-50% + 380px), -50%) scale(0.82) rotateY(-8deg);
+        opacity: 0.45;
+        z-index: 5;
+        filter: brightness(0.5);
+    }
+
+    /* Far side cards */
+    .carousel-card.is-far-prev {
+        transform: translate(calc(-50% - 680px), -50%) scale(0.65) rotateY(14deg);
+        opacity: 0.15;
+        z-index: 2;
+        filter: brightness(0.3);
+    }
+
+    .carousel-card.is-far-next {
+        transform: translate(calc(-50% + 680px), -50%) scale(0.65) rotateY(-14deg);
+        opacity: 0.15;
+        z-index: 2;
+        filter: brightness(0.3);
+    }
+
+    /* Hidden cards */
+    .carousel-card.is-hidden {
+        transform: translate(-50%, -50%) scale(0.4);
+        opacity: 0;
+        z-index: 0;
+        pointer-events: none;
+    }
+
+    /* Nav arrows */
+    .carousel-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 20;
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        background: rgba(0,0,0,0.6);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(255,255,255,0.1);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .carousel-arrow:hover {
+        background: rgba(220, 38, 38, 0.7);
+        border-color: rgba(220, 38, 38, 0.5);
+        box-shadow: 0 0 25px rgba(220, 38, 38, 0.3);
+    }
+
+    .carousel-arrow.arrow-left { left: 1.5rem; }
+    .carousel-arrow.arrow-right { right: 1.5rem; }
+
+    /* Dots */
+    .carousel-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.2);
+        transition: all 0.4s ease;
+        cursor: pointer;
+    }
+
+    .carousel-dot.is-active {
+        background: #dc2626;
+        width: 28px;
+        border-radius: 4px;
+        box-shadow: 0 0 10px rgba(220, 38, 38, 0.5);
+    }
+
+    /* Mobile adjustments */
+    @media (max-width: 768px) {
+        .carousel-viewport { height: 420px; }
+        .carousel-card { width: 280px; height: 380px; }
+        .carousel-card.is-prev { transform: translate(calc(-50% - 200px), -50%) scale(0.75); }
+        .carousel-card.is-next { transform: translate(calc(-50% + 200px), -50%) scale(0.75); }
+        .carousel-card.is-far-prev,
+        .carousel-card.is-far-next { opacity: 0; }
+        .carousel-arrow { width: 40px; height: 40px; }
+        .carousel-arrow.arrow-left { left: 0.5rem; }
+        .carousel-arrow.arrow-right { right: 0.5rem; }
+    }
+</style>
+
+<!-- ─── SECTION HTML ─────────────────────────────────────── -->
+<section id="team" class="py-24 bg-[#080808] relative overflow-hidden">
+    <!-- Ambient glow -->
+    <div class="absolute inset-0 pointer-events-none">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-red-600/5 blur-[120px]"></div>
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-6">
+        <div class="mb-16 text-center">
+            <div class="inline-block border border-red-600/50 px-4 py-1 rounded-full text-red-500 text-xs font-bold tracking-widest uppercase mb-6 bg-red-600/5">
+                Meet The Crew
+            </div>
+            <h2 class="text-4xl md:text-5xl font-black uppercase mb-4">The Core Team</h2>
+            <div class="w-20 h-1 bg-red-600 mx-auto"></div>
+            <p class="mt-4 text-gray-500 font-bold uppercase text-xs tracking-widest">The people behind TSBC's legacy</p>
+        </div>
+    </div>
+
+    <!-- Carousel -->
+    <div class="relative z-10">
+        <div class="carousel-viewport" id="team-carousel">
+            <div class="carousel-track" id="carousel-track">
+                <!-- Cards injected by JS -->
+            </div>
+
+            <!-- Navigation Arrows -->
+            <button class="carousel-arrow arrow-left" id="carousel-prev" aria-label="Previous member">
+                <i data-lucide="chevron-left" class="w-6 h-6"></i>
+            </button>
+            <button class="carousel-arrow arrow-right" id="carousel-next" aria-label="Next member">
+                <i data-lucide="chevron-right" class="w-6 h-6"></i>
+            </button>
+        </div>
+
+        <!-- Dots -->
+        <div class="flex justify-center gap-2 mt-8" id="carousel-dots"></div>
+
+        <!-- Active member name display -->
+        <div class="text-center mt-6">
+            <p id="carousel-active-name" class="text-lg font-bold text-white transition-opacity duration-300"></p>
+            <p id="carousel-active-role" class="text-xs text-red-500 uppercase tracking-widest font-bold mt-1 transition-opacity duration-300"></p>
+        </div>
+    </div>
+</section>
+
+<!-- ─── CAROUSEL ENGINE ──────────────────────────────────── -->
+<script>
+    // =====================================================================
+    // 🛠️ EDIT TEAM MEMBERS HERE
+    // =====================================================================
+    const team = [
+        {
+            name: "Naufal Ammariiq",
+            role: "Founder",
+            bio: "Visionary leader who established TSBC in 2014, shaping its creative direction and cinematic ambitions.",
+            photo: "https://i.supaimg.com/b3da42ad-02aa-4f1a-b499-acc775586122/d8ccf438-0b8d-477b-bb5c-24b72eabe737.jpg"
+        },
+        {
+            name: "Halvino Nataprawira",
+            role: "Co-Founder / HRD",
+            bio: "Co-architect of TSBC's foundation. Manages human resources, team culture, and community development.",
+            photo: "https://i.supaimg.com/b3da42ad-02aa-4f1a-b499-acc775586122/d6faea0c-9def-452a-ac43-330a8035310a.jpg"
+        },
+        {
+            name: "Abyan Areli",
+            role: "Financial Officer",
+            bio: "Oversees all financial operations and ensures sustainable community growth.",
+            photo: "https://i.supaimg.com/b3da42ad-02aa-4f1a-b499-acc775586122/db7132bf-76b4-4973-84f0-dc039b0c7b2b.jpg"
+        },
+        {
+            name: "Muhammad Fadhlan",
+            role: "Operations Officer",
+            bio: "Drives day-to-day operations, coordinating production schedules and team workflows.",
+            photo: "https://i.supaimg.com/b3da42ad-02aa-4f1a-b499-acc775586122/2c596ed0-22ee-44e5-96a8-85770a1e1154.jpg"
+        },
+        {
+            name: "Vacant",
+            role: "Technology Officer",
+            bio: "This position is currently open. We're looking for a tech-savvy individual to lead our digital infrastructure.",
+            photo: ""
+        },
+        {
+            name: "Maulana Ibrahim",
+            role: "Creative Director",
+            bio: "Leads the creative vision for TSBC's visual identity, from thumbnails to cinematic productions.",
+            photo: "https://i.supaimg.com/b3da42ad-02aa-4f1a-b499-acc775586122/d8ccf438-0b8d-477b-bb5c-24b72eabe737.jpg"
+        }
+    ];
+    // =====================================================================
+
+    let currentSlide = 0;
+    let autoplayTimer = null;
+
+    function buildCarousel() {
+        const track = document.getElementById('carousel-track');
+        const dots = document.getElementById('carousel-dots');
+        if (!track) return;
+
+        // Build cards
+        track.innerHTML = team.map((member, i) => {
+            const bgImage = member.photo
+                ? `background-image: url('${member.photo}');`
+                : `background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);`;
+            const initial = member.name.charAt(0);
+
+            return `
+                <div class="carousel-card is-hidden" data-index="${i}" onclick="goToSlide(${i})">
+                    <div class="card-bg" style="${bgImage}"></div>
+                    <div class="card-overlay"></div>
+                    <div class="card-content">
+                        ${!member.photo ? `<div class="w-16 h-16 bg-gradient-to-tr from-red-600 to-red-400 rounded-full mx-auto mb-4 flex items-center justify-center font-black text-3xl shadow-lg shadow-red-600/20">${initial}</div>` : ''}
+                        <h3 class="text-2xl font-black uppercase tracking-tight mb-1">${member.name}</h3>
+                        <p class="text-red-500 text-xs font-bold uppercase tracking-widest mb-3">${member.role}</p>
+                        <p class="text-gray-400 text-sm leading-relaxed">${member.bio}</p>
+                    </div>
+                </div>
+            `;
+        }).join('');
+
+        // Build dots
+        dots.innerHTML = team.map((_, i) => `
+            <button class="carousel-dot" data-dot="${i}" onclick="goToSlide(${i})" aria-label="Go to member ${i + 1}"></button>
+        `).join('');
+
+        updateCarousel();
+    }
+
+    function updateCarousel() {
+        const cards = document.querySelectorAll('.carousel-card');
+        const dots = document.querySelectorAll('.carousel-dot');
+        const total = team.length;
+
+        cards.forEach((card, i) => {
+            // Remove all state classes
+            card.classList.remove('is-active', 'is-prev', 'is-next', 'is-far-prev', 'is-far-next', 'is-hidden');
+
+            // Calculate relative position (wrapping)
+            let diff = i - currentSlide;
+            if (diff > total / 2) diff -= total;
+            if (diff < -total / 2) diff += total;
+
+            if (diff === 0) card.classList.add('is-active');
+            else if (diff === -1) card.classList.add('is-prev');
+            else if (diff === 1) card.classList.add('is-next');
+            else if (diff === -2) card.classList.add('is-far-prev');
+            else if (diff === 2) card.classList.add('is-far-next');
+            else card.classList.add('is-hidden');
+        });
+
+        // Update dots
+        dots.forEach((dot, i) => {
+            dot.classList.toggle('is-active', i === currentSlide);
+        });
+
+        // Update bottom name display
+        const nameEl = document.getElementById('carousel-active-name');
+        const roleEl = document.getElementById('carousel-active-role');
+        if (nameEl && roleEl) {
+            nameEl.style.opacity = '0';
+            roleEl.style.opacity = '0';
+            setTimeout(() => {
+                nameEl.textContent = team[currentSlide].name;
+                roleEl.textContent = team[currentSlide].role;
+                nameEl.style.opacity = '1';
+                roleEl.style.opacity = '1';
+            }, 200);
+        }
+    }
+
+    function goToSlide(index) {
+        currentSlide = ((index % team.length) + team.length) % team.length;
+        updateCarousel();
+        resetAutoplay();
+    }
+
+    function nextSlide() { goToSlide(currentSlide + 1); }
+    function prevSlide() { goToSlide(currentSlide - 1); }
+
+    function resetAutoplay() {
+        clearInterval(autoplayTimer);
+        autoplayTimer = setInterval(nextSlide, 5000);
+    }
+
+    // Auto-initialize when injected via fetch()
+    function initCarousel() {
+        buildCarousel();
+        resetAutoplay();
+        document.getElementById('carousel-prev')?.addEventListener('click', prevSlide);
+        document.getElementById('carousel-next')?.addEventListener('click', nextSlide);
+        if (typeof lucide !== 'undefined') lucide.createIcons();
+    }
+</script>
