@@ -27,7 +27,7 @@
   </script>
 
   <!-- Shared Site Styles -->
-  <link rel="stylesheet" href="Styles/styles.css" />
+  <link rel="stylesheet" href="../Styles/styles.css" />
 
   <style>
     /* Music Mix Only */
@@ -78,7 +78,7 @@
   <div id="navbar-container"></div>
 
   <script>
-    fetch("Components/navbar.html")
+    fetch("../Components/navbar.html")
       .then(res => res.text())
       .then(html => {
         document.getElementById("navbar-container").innerHTML = html;
@@ -297,7 +297,7 @@
   <div id="footer-container"></div>
 
   <script>
-    fetch("Components/footer.html")
+    fetch("../Components/footer.html")
       .then(res => res.text())
       .then(html => {
         document.getElementById("footer-container").innerHTML = html;
