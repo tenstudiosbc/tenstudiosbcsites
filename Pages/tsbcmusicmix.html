@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="TSBC Music Mix - Official soundtracks for SSIA: Vanguard Chronicles and other TSBC projects.">
+    <title>Music Mix | TenStudios Broadcasting Community</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2WK59XET1E"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-2WK59XET1E');
+    </script>
+    <link rel="stylesheet" href="Styles/styles.css">
+    <style>
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .aspect-video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 */
+            height: 0;
+            overflow: hidden;
+        }
+
+        .aspect-video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 0.75rem;
+        }
+        
+        body {
+            background-color: #050505;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        .grid-bg {
+            background-image: linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        /* Image hover effect */
+        .division-banner {
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .division-banner:hover {
+            transform: scale(1.01);
+        }
+    </style>
+</head>
+
+<body class="grid-bg">
+
+    <!-- Navigation -->
+    <div id="navbar-container"></div>
+    <script>
+        fetch('Components/navbar.html')
+            .then(res => res.text())
+            .then(html => {
+                html = html.replace(/\.\.\/index\.html/g, 'index.html');
+                document.getElementById('navbar-container').innerHTML = html;
+                if (typeof lucide !== 'undefined') lucide.createIcons();
+            })
+            .catch(err => console.error('Failed to load Navbar:', err));
+    </script>
+
+    <main class="pt-32 pb-24 px-6">
+        <div class="max-w-7xl mx-auto">
+            
+            <!-- Hero Header -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
+                <div class="order-2 lg:order-1">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-600/10 border border-red-600/30 text-red-500 text-xs font-bold uppercase tracking-widest mb-6">
+                        <span class="relative flex h-2 w-2">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+                        </span>
+                        Reformed 2026
+                    </div>
+                    <h1 class="text-5xl md:text-7xl font-black uppercase mb-6 tracking-tighter">
+                        TSBC <span class="text-red-600">Music Mix</span>
+                    </h1>
+                    <p class="max-w-3xl text-gray-400 text-lg leading-relaxed mb-8">
+                        For over 12 years, the TenStudios Broadcasting Community has been building worlds. This channel is dedicated to the high-fidelity, tactical soundtracks of <span class="text-white font-semibold">SSIA: Vanguard Chronicles</span> and other TSBC Projects.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <div class="glass px-4 py-3 rounded-xl flex items-center gap-3">
+                            <i data-lucide="music" class="text-red-500 w-5 h-5"></i>
+                            <span class="text-sm font-bold uppercase tracking-wide">Tactical Audio</span>
+                        </div>
+                        <div class="glass px-4 py-3 rounded-xl flex items-center gap-3">
+                            <i data-lucide="volume-2" class="text-red-500 w-5 h-5"></i>
+                            <span class="text-sm font-bold uppercase tracking-wide">Hi-Fi Quality</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="order-1 lg:order-2">
+                    <div class="relative group">
+                        <div class="absolute -inset-1 bg-gradient-to-r from-red-600 to-transparent rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+                        <img src="https://i.supaimg.com/b3da42ad-02aa-4f1a-b499-acc775586122/48f90050-8be5-4f47-b6b8-b079d0accaca.png" 
+                             alt="TSBC Music Mix Division" 
+                             class="relative division-banner w-full rounded-2xl shadow-2xl border border-white/10"
+                             onerror="this.src='https://via.placeholder.com/800x450?text=TSBC+Music+Mix'">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Albums Section -->
+            <div class="mb-12 flex items-center justify-between">
+                <div>
+                    <h2 class="text-3xl font-black uppercase tracking-tight">Community Discography</h2>
+                    <div class="w-12 h-1 bg-red-600 mt-2"></div>
+                </div>
+                <p class="text-gray-500 text-sm font-bold uppercase hidden md:block">Non-Monetized Project</p>
+            </div>
+
+            <!-- DYNAMIC ALBUMS GRID -->
+            <div id="albums-grid" class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Data will be injected here by JavaScript -->
+                <div class="col-span-full py-20 text-center">
+                    <div class="animate-pulse text-gray-500">Loading tactical soundtracks...</div>
+                </div>
+            </div>
+
+            <!-- Division Info Section -->
+            <section class="mt-24 p-8 md:p-12 glass rounded-3xl relative overflow-hidden">
+                <div class="absolute top-0 right-0 p-8 opacity-10 pointer-events-none">
+                    <i data-lucide="disc" class="w-64 h-64 animate-spin-slow" style="animation-duration: 20s;"></i>
+                </div>
+                <div class="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h3 class="text-3xl font-black uppercase mb-6">Sound Division</h3>
+                        <p class="text-gray-400 mb-6 leading-relaxed">
+                            TSBC Music Mix is basically another TSBC Division just like Media Productions and Game Developments. 
+                            The division is newly reformed as of 2026 to focus exclusively on community soundtracks.
+                        </p>
+                        <div class="space-y-4">
+                            <div class="flex items-start gap-4">
+                                <div class="mt-1 bg-red-600 p-1 rounded">
+                                    <i data-lucide="check" class="w-3 h-3 text-white"></i>
+                                </div>
+                                <p class="text-sm text-gray-300"><span class="font-bold text-white">Fan Focused:</span> Created for the fans of the SSIA Universe.</p>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="mt-1 bg-red-600 p-1 rounded">
+                                    <i data-lucide="check" class="w-3 h-3 text-white"></i>
+                                </div>
+                                <p class="text-sm text-gray-300"><span class="font-bold text-white">Integration:</span> Directly tied to Vanguard Chronicles projects.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex justify-center md:justify-end">
+                        <div class="inline-block p-1 bg-gradient-to-br from-red-600/20 to-transparent rounded-full">
+                            <div class="bg-black p-8 rounded-full border border-white/5">
+                                <i data-lucide="mic-2" class="w-16 h-16 text-red-600"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <div id="footer-container"></div>
+    <script>
+        fetch('Components/footer.html')
+            .then(res => res.text())
+            .then(html => {
+                html = html.replace(/\.\.\/index\.html/g, 'index.html');
+                document.getElementById('footer-container').innerHTML = html;
+            })
+            .catch(err => console.error('Failed to load Footer:', err));
+    </script>
+
+    <script>
+        /**
+         * EASY EDIT SECTION
+         * Add or remove albums here. 
+         * 'id' is for internal tracking, 'playlistId' is the YouTube ID after "list="
+         */
+        const albumData = [
+            {
+                id: "01",
+                title: "Whispers Of Vanguard VOL 1",
+                series: "SSIA Vanguard Chronicles OST",
+                playlistId: "PLP64v_cUHbliOykjJSOn1vxHeHVwz5qDT",
+                tag: "Official Playlist",
+                icon: "music-2"
+            },
+            {
+                id: "02",
+                title: "Office Essentials VOL 1",
+                series: "SSIA Vanguard Chronicles OST",
+                playlistId: "PLP64v_cUHblj2YncrB-3QAPjwZnCkzznm",
+                tag: "Ambient Focus",
+                icon: "headphones"
+            }
+            // To add a new album, copy the block above and paste it here.
+        ];
+
+        function renderAlbums() {
+            const grid = document.getElementById('albums-grid');
+            if (!grid) return;
+
+            grid.innerHTML = albumData.map(album => `
+                <div class="group">
+                    <div class="mb-6 flex items-end justify-between">
+                        <div>
+                            <h2 class="text-2xl font-black uppercase tracking-tight">${album.id} ${album.title}</h2>
+                            <p class="text-red-500 font-bold text-sm uppercase tracking-wide">${album.series}</p>
+                        </div>
+                        <span class="text-gray-600 text-xs font-mono">TSBC-MM-${album.id}</span>
+                    </div>
+                    <div class="glass p-4 rounded-2xl transition-all group-hover:border-red-600/50 group-hover:bg-white/[0.05]">
+                        <div class="aspect-video-container mb-4">
+                            <iframe 
+                                src="https://www.youtube.com/embed/videoseries?list=${album.playlistId}" 
+                                title="${album.title}" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="flex items-center justify-between px-2">
+                            <div class="flex items-center gap-2 text-gray-400 text-sm">
+                                <i data-lucide="${album.icon}" class="w-4 h-4"></i>
+                                <span>${album.tag}</span>
+                            </div>
+                            <a href="https://youtube.com/playlist?list=${album.playlistId}" 
+                               target="_blank" 
+                               class="text-xs font-bold uppercase hover:text-red-500 transition-colors flex items-center gap-1">
+                               Listen on YouTube <i data-lucide="external-link" class="w-3 h-3"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            // Re-initialize icons for the new elements
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            renderAlbums();
+            
+            // Navbar Scroll Effect
+            window.addEventListener('scroll', () => {
+                const nav = document.getElementById('navbar');
+                if (!nav) return;
+                if (window.scrollY > 50) {
+                    nav.classList.add('bg-black/95', 'py-4', 'shadow-2xl', 'border-b', 'border-white/5');
+                    nav.classList.remove('bg-transparent', 'py-6');
+                } else {
+                    nav.classList.remove('bg-black/95', 'py-4', 'shadow-2xl', 'border-b', 'border-white/5');
+                    nav.classList.add('bg-transparent', 'py-6');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
