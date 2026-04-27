@@ -98,8 +98,7 @@
 
       <div class="hero-blob"></div>
 
-      <div
-        class="relative z-10 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+      <div class="relative z-10 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
 
         <!-- Left -->
         <div>
@@ -112,13 +111,11 @@
 
           </div>
 
-          <h1
-            class="text-5xl md:text-7xl font-black leading-none tracking-tighter uppercase mb-6">
+          <h1 class="text-5xl md:text-7xl font-black leading-none tracking-tighter uppercase mb-6">
 
             Tactical <br />
 
-            <span
-              class="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-400">
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-400">
 
               Soundtracks
 
@@ -136,16 +133,14 @@
 
             <div class="glass rounded-2xl p-4">
               <p class="text-2xl font-black text-white">2026</p>
-              <p
-                class="text-[10px] uppercase tracking-widest font-bold text-red-500">
+              <p class="text-[10px] uppercase tracking-widest font-bold text-red-500">
                 Reformed
               </p>
             </div>
 
             <div class="glass rounded-2xl p-4">
               <p class="text-2xl font-black text-white">Hi-Fi</p>
-              <p
-                class="text-[10px] uppercase tracking-widest font-bold text-red-500">
+              <p class="text-[10px] uppercase tracking-widest font-bold text-red-500">
                 Standard
               </p>
             </div>
@@ -163,13 +158,11 @@
               class="absolute -inset-2 bg-red-600/20 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition duration-700">
             </div>
 
-            <div
-              class="relative overflow-hidden rounded-3xl border border-white/10 shadow-2xl">
+            <div class="relative overflow-hidden rounded-3xl border border-white/10 shadow-2xl">
 
               <img
                 src="https://i.supaimg.com/b3da42ad-02aa-4f1a-b499-acc775586122/48f90050-8be5-4f47-b6b8-b079d0accaca.png"
-                alt="TSBC Music Mix Banner"
-                class="w-full h-auto object-cover division-banner"
+                alt="TSBC Music Mix Banner" class="w-full h-auto object-cover division-banner"
                 onerror="this.src='https://via.placeholder.com/1200x675/111111/ef4444?text=TSBC+Music+Mix'" />
 
             </div>
@@ -183,20 +176,17 @@
     </section>
 
     <!-- Divider -->
-    <div
-      class="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent">
+    <div class="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent">
     </div>
 
     <!-- Discography -->
     <section class="max-w-7xl mx-auto px-6 py-20">
 
-      <div
-        class="mb-14 flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div class="mb-14 flex flex-col md:flex-row md:items-center justify-between gap-4">
 
         <div>
 
-          <p
-            class="text-red-500 text-xs font-bold uppercase tracking-[0.35em] mb-2">
+          <p class="text-red-500 text-xs font-bold uppercase tracking-[0.35em] mb-2">
             Audio Archives
           </p>
 
@@ -206,16 +196,14 @@
 
         </div>
 
-        <div
-          class="glass px-4 py-3 rounded-xl text-xs uppercase tracking-widest font-bold text-gray-400">
+        <div class="glass px-4 py-3 rounded-xl text-xs uppercase tracking-widest font-bold text-gray-400">
           Non-Monetized Stream Active
         </div>
 
       </div>
 
       <!-- Albums -->
-      <div id="albums-grid"
-        class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+      <div id="albums-grid" class="grid grid-cols-1 lg:grid-cols-2 gap-10">
 
         <div class="glass rounded-2xl p-10 text-center text-gray-500">
           Loading albums...
@@ -234,8 +222,7 @@
 
           <div>
 
-            <p
-              class="text-red-500 text-xs font-bold uppercase tracking-[0.35em] mb-3">
+            <p class="text-red-500 text-xs font-bold uppercase tracking-[0.35em] mb-3">
               Overview
             </p>
 
@@ -297,12 +284,14 @@
   <div id="footer-container"></div>
 
   <script>
-    fetch("../Components/footer.html")
+    fetch('../Components/footer.html')
       .then(res => res.text())
       .then(html => {
-        document.getElementById("footer-container").innerHTML = html;
+        // Rewrite paths for /Pages/ context
+        html = html.replace(/href="Pages\//g, 'href="');
+        document.getElementById('footer-container').innerHTML = html;
       })
-      .catch(err => console.error("Failed to load Footer:", err));
+      .catch(err => console.error('Failed to load Footer:', err));
   </script>
 
   <!-- Page Script -->
