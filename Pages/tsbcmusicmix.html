@@ -87,17 +87,19 @@
 
 <body class="grid-bg">
 
-    <!-- Navigation (loaded from Components/navbar.html) -->
-    <div id="navbar-container"></div>
-    <script>
-        fetch('Components/navbar.html')
-            .then(res => res.text())
-            .then(html => {
-                html = html.replace(/\.\.\/index\.html/g, 'index.html');
-                document.getElementById('navbar-container').innerHTML = html;
-                if (typeof lucide !== 'undefined') lucide.createIcons();
-            })
-            .catch(err => console.error('Failed to load Navbar:', err));
+    <!-- Navigation (loaded from Components/Navbar.html) -->  
+    <div id="navbar-container"></div>  
+    <script>  
+        fetch('Components/Navbar.html')  
+            .then(res => res.text())  
+            .then(html => {  
+                // Rewrite paths for root-level context  
+                html = html.replace(/\.\.\/index\.html/g, 'index.html');  
+                document.getElementById('navbar-container').innerHTML = html;  
+                // Re-initialize Lucide icons for the navbar  
+                if (typeof lucide !== 'undefined') lucide.createIcons();  
+            })  
+            .catch(err => console.error('Failed to load Navbar:', err));  
     </script>
 
     <main class="pt-32 pb-24 px-6 page-transition">
@@ -232,16 +234,17 @@
         </div>
     </main>
 
-    <!-- Footer (loaded from Components/footer.html) -->
-    <div id="footer-container"></div>
-    <script>
-        fetch('Components/footer.html')
-            .then(res => res.text())
-            .then(html => {
-                html = html.replace(/\.\.\/index\.html/g, 'index.html');
-                document.getElementById('footer-container').innerHTML = html;
-            })
-            .catch(err => console.error('Failed to load Footer:', err));
+    <!-- Footer (loaded from Components/Footer.html) -->  
+    <div id="footer-container"></div>  
+    <script>  
+        fetch('Components/Footer.html')  
+            .then(res => res.text())  
+            .then(html => {  
+                // Rewrite paths for root-level context  
+                html = html.replace(/\.\.\/index\.html/g, 'index.html');  
+                document.getElementById('footer-container').innerHTML = html;  
+            })  
+            .catch(err => console.error('Failed to load Footer:', err));  
     </script>
 
     <script>
