@@ -90,7 +90,7 @@
     <!-- Navigation (loaded from Components/navbar.html) -->
     <div id="navbar-container"></div>
     <script>
-        fetch('../Components/navbar.html')
+        fetch('Components/navbar.html')
             .then(res => res.text())
             .then(html => {
                 html = html.replace(/\.\.\/index\.html/g, 'index.html');
@@ -235,7 +235,7 @@
     <!-- Footer (loaded from Components/footer.html) -->
     <div id="footer-container"></div>
     <script>
-        fetch('../Components/footer.html')
+        fetch('Components/footer.html')
             .then(res => res.text())
             .then(html => {
                 html = html.replace(/\.\.\/index\.html/g, 'index.html');
