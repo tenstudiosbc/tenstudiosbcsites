@@ -9,7 +9,7 @@
 
   <title>Music Mix | TSBC Official</title>
 
-  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="icon" type="image/png" href="../favicon.png" />
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -69,6 +69,66 @@
     .division-banner:hover {
       transform: scale(1.02);
     }
+
+    /* Share Toast */
+    #share-toast {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(6px);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(10, 10, 10, 0.92);
+      border: 1px solid rgba(220, 38, 38, 0.35);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.65rem 1.2rem;
+      border-radius: 9999px;
+      backdrop-filter: blur(12px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+
+    #share-toast.visible {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* Share button */
+    .share-btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #6b7280;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: color 0.2s ease;
+    }
+
+    .share-btn:hover {
+      color: #ef4444;
+    }
+
+    .share-btn .share-icon {
+      transition: transform 0.2s ease;
+    }
+
+    .share-btn:hover .share-icon {
+      transform: scale(1.15);
+    }
   </style>
 </head>
 
@@ -81,17 +141,23 @@
     fetch('../Components/navbar.html')
       .then(res => res.text())
       .then(html => {
-        // Rewrite paths for /Pages/ context
         html = html.replace(/href="Pages\//g, 'href="');
         document.getElementById('navbar-container').innerHTML = html;
-        // Highlight current page
         const currentLink = document.querySelector('[data-nav-link="helpcenter"]');
         if (currentLink) currentLink.classList.add('text-red-500');
-        // Re-initialize Lucide icons
         if (typeof lucide !== 'undefined') lucide.createIcons();
       })
       .catch(err => console.error('Failed to load Navbar:', err));
   </script>
+
+  <!-- Share Toast -->
+  <div id="share-toast">
+    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none"
+      stroke="#ef4444" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="20 6 9 17 4 12"></polyline>
+    </svg>
+    <span id="share-toast-msg">Link copied to clipboard</span>
+  </div>
 
   <main>
 
@@ -107,22 +173,15 @@
 
           <div
             class="inline-flex items-center gap-2 border border-red-600/50 px-4 py-1 rounded-full text-red-500 text-xs font-bold tracking-widest uppercase mb-6 bg-red-600/5">
-
             <i data-lucide="music-4" class="w-3 h-3"></i>
             TSBC Music Mix
-
           </div>
 
           <h1 class="text-5xl md:text-7xl font-black leading-none tracking-tighter uppercase mb-6">
-
             Tactical <br />
-
             <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-400">
-
               Soundtracks
-
             </span>
-
           </h1>
 
           <p class="text-gray-500 text-lg leading-relaxed max-w-xl mb-8">
@@ -132,21 +191,14 @@
           </p>
 
           <div class="grid grid-cols-2 gap-4 max-w-md">
-
             <div class="glass rounded-2xl p-4">
               <p class="text-2xl font-black text-white">2026</p>
-              <p class="text-[10px] uppercase tracking-widest font-bold text-red-500">
-                Reformed
-              </p>
+              <p class="text-[10px] uppercase tracking-widest font-bold text-red-500">Reformed</p>
             </div>
-
             <div class="glass rounded-2xl p-4">
               <p class="text-2xl font-black text-white">Hi-Fi</p>
-              <p class="text-[10px] uppercase tracking-widest font-bold text-red-500">
-                Standard
-              </p>
+              <p class="text-[10px] uppercase tracking-widest font-bold text-red-500">Standard</p>
             </div>
-
           </div>
 
           <!-- YouTube Music Button -->
@@ -177,24 +229,17 @@
 
         <!-- Right -->
         <div>
-
           <div class="relative group">
-
             <div
               class="absolute -inset-2 bg-red-600/20 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition duration-700">
             </div>
-
             <div class="relative overflow-hidden rounded-3xl border border-white/10 shadow-2xl">
-
               <img
                 src="https://i.supaimg.com/b3da42ad-02aa-4f1a-b499-acc775586122/48f90050-8be5-4f47-b6b8-b079d0accaca.png"
                 alt="TSBC Music Mix Banner" class="w-full h-auto object-cover division-banner"
                 onerror="this.src='https://via.placeholder.com/1200x675/111111/ef4444?text=TSBC+Music+Mix'" />
-
             </div>
-
           </div>
-
         </div>
 
       </div>
@@ -202,106 +247,65 @@
     </section>
 
     <!-- Divider -->
-    <div class="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent">
-    </div>
+    <div class="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
 
     <!-- Discography -->
     <section class="max-w-7xl mx-auto px-6 py-20">
 
       <div class="mb-14 flex flex-col md:flex-row md:items-center justify-between gap-4">
-
         <div>
-
-          <p class="text-red-500 text-xs font-bold uppercase tracking-[0.35em] mb-2">
-            Audio Archives
-          </p>
-
-          <h2 class="text-4xl font-black uppercase tracking-tight">
-            Discography
-          </h2>
-
+          <p class="text-red-500 text-xs font-bold uppercase tracking-[0.35em] mb-2">Audio Archives</p>
+          <h2 class="text-4xl font-black uppercase tracking-tight">Discography</h2>
         </div>
-
         <div class="glass px-4 py-3 rounded-xl text-xs uppercase tracking-widest font-bold text-gray-400">
           Non-Monetized Stream Active
         </div>
-
       </div>
 
       <!-- Albums -->
       <div id="albums-grid" class="grid grid-cols-1 lg:grid-cols-2 gap-10">
-
-        <div class="glass rounded-2xl p-10 text-center text-gray-500">
-          Loading albums...
-        </div>
-
+        <div class="glass rounded-2xl p-10 text-center text-gray-500">Loading albums...</div>
       </div>
 
     </section>
 
     <!-- About -->
     <section class="max-w-7xl mx-auto px-6 pb-24">
-
       <div class="glass rounded-[2rem] p-8 md:p-12">
-
         <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-
           <div>
-
-            <p class="text-red-500 text-xs font-bold uppercase tracking-[0.35em] mb-3">
-              Overview
-            </p>
-
-            <h3 class="text-3xl font-black uppercase mb-6">
-              Built For Worlds
-            </h3>
-
+            <p class="text-red-500 text-xs font-bold uppercase tracking-[0.35em] mb-3">Overview</p>
+            <h3 class="text-3xl font-black uppercase mb-6">Built For Worlds</h3>
             <p class="text-gray-500 leading-relaxed mb-5">
               TSBC Music Mix transforms storytelling into sound.
               Every release supports atmosphere, emotion, and tactical identity.
             </p>
-
             <p class="text-gray-500 leading-relaxed">
               Community-first. Passion-driven. Always non-monetized.
             </p>
-
           </div>
-
           <div class="space-y-4">
-
             <div class="glass rounded-2xl p-5">
               <div class="flex items-center gap-3">
                 <i data-lucide="radio" class="w-5 h-5 text-red-500"></i>
-                <span class="font-bold uppercase text-sm">
-                  Community Radio Feel
-                </span>
+                <span class="font-bold uppercase text-sm">Community Radio Feel</span>
               </div>
             </div>
-
             <div class="glass rounded-2xl p-5">
               <div class="flex items-center gap-3">
                 <i data-lucide="gamepad-2" class="w-5 h-5 text-red-500"></i>
-                <span class="font-bold uppercase text-sm">
-                  Direct Game Integration
-                </span>
+                <span class="font-bold uppercase text-sm">Direct Game Integration</span>
               </div>
             </div>
-
             <div class="glass rounded-2xl p-5">
               <div class="flex items-center gap-3">
                 <i data-lucide="headphones" class="w-5 h-5 text-red-500"></i>
-                <span class="font-bold uppercase text-sm">
-                  Immersive Listening
-                </span>
+                <span class="font-bold uppercase text-sm">Immersive Listening</span>
               </div>
             </div>
-
           </div>
-
         </div>
-
       </div>
-
     </section>
 
   </main>
@@ -313,7 +317,6 @@
     fetch('../Components/footer.html')
       .then(res => res.text())
       .then(html => {
-        // Rewrite paths for /Pages/ context
         html = html.replace(/href="Pages\//g, 'href="');
         document.getElementById('footer-container').innerHTML = html;
       })
@@ -322,6 +325,9 @@
 
   <!-- Page Script -->
   <script>
+    // ─── Album Data ────────────────────────────────────────────────────────────
+    // To add a new album, just push a new object here.
+    // The share button and anchor will be generated automatically.
     const albumData = [
       {
         id: "01",
@@ -341,48 +347,155 @@
       }
     ];
 
+    // ─── Helpers ───────────────────────────────────────────────────────────────
+
+    /**
+     * Converts an album title + id into a clean URL-safe anchor slug.
+     * e.g. "01 Whispers Of Vanguard VOL 1" → "album-01-whispers-of-vanguard-vol-1"
+     */
+    function toSlug(album) {
+      return "album-" + (album.id + "-" + album.title)
+        .toLowerCase()
+        .replace(/[^a-z0-9\s-]/g, "")
+        .trim()
+        .replace(/\s+/g, "-");
+    }
+
+    /**
+     * Builds the shareable URL for an album using the current page URL + hash.
+     * Works correctly on GitHub Pages (respects subdirectory paths).
+     */
+    function buildShareUrl(album) {
+      // Remove any existing hash, then append the album anchor
+      const base = window.location.href.split("#")[0];
+      return base + "#" + toSlug(album);
+    }
+
+    // ─── Toast ─────────────────────────────────────────────────────────────────
+    let toastTimer = null;
+
+    function showToast(msg) {
+      const toast = document.getElementById("share-toast");
+      const label = document.getElementById("share-toast-msg");
+      label.textContent = msg;
+      toast.classList.add("visible");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove("visible"), 2600);
+    }
+
+    // ─── Share Logic ───────────────────────────────────────────────────────────
+
+    async function shareAlbum(album) {
+      const url = buildShareUrl(album);
+      const shareTitle = album.title + " — TSBC Music Mix";
+      const shareText = album.series + ": " + album.title;
+
+      // Use native Web Share API if supported (mobile browsers, some desktop)
+      if (navigator.share) {
+        try {
+          await navigator.share({ title: shareTitle, text: shareText, url });
+          return; // native sheet handled it
+        } catch (err) {
+          // User cancelled — don't fall through to clipboard
+          if (err.name === "AbortError") return;
+        }
+      }
+
+      // Fallback: copy to clipboard
+      try {
+        await navigator.clipboard.writeText(url);
+        showToast("Link copied to clipboard");
+      } catch {
+        // Last-resort fallback for older browsers / HTTP (no clipboard API)
+        const dummy = document.createElement("input");
+        dummy.value = url;
+        document.body.appendChild(dummy);
+        dummy.select();
+        document.execCommand("copy");
+        document.body.removeChild(dummy);
+        showToast("Link copied to clipboard");
+      }
+    }
+
+    // ─── Render ────────────────────────────────────────────────────────────────
+
     function renderAlbums() {
       const grid = document.getElementById("albums-grid");
 
-      grid.innerHTML = albumData.map(album => `
-        <div class="glass rounded-3xl p-5 group">
+      grid.innerHTML = albumData.map(album => {
+        const slug = toSlug(album);
+        return `
+          <div id="${slug}" class="glass rounded-3xl p-5 group scroll-mt-28">
 
-          <div class="mb-5">
+            <div class="mb-5 flex items-start justify-between gap-4">
 
-            <p class="text-red-500 text-[10px] uppercase tracking-[0.35em] font-bold mb-2">
-              ${album.series}
-            </p>
+              <div>
+                <p class="text-red-500 text-[10px] uppercase tracking-[0.35em] font-bold mb-2">
+                  ${album.series}
+                </p>
+                <h3 class="text-2xl font-black uppercase group-hover:text-red-500 transition">
+                  ${album.id}. ${album.title}
+                </h3>
+              </div>
 
-            <h3 class="text-2xl font-black uppercase group-hover:text-red-500 transition">
-              ${album.id}. ${album.title}
-            </h3>
+              <!-- Share Button -->
+              <button
+                class="share-btn flex-shrink-0 mt-1"
+                aria-label="Share ${album.title}"
+                onclick="shareAlbum(albumData[${albumData.indexOf(album)}])"
+              >
+                <svg
+                  class="share-icon w-4 h-4"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+                  <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+                  <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+                </svg>
+                Share
+              </button>
+
+            </div>
+
+            <div class="aspect-video-container mb-4">
+              <iframe
+                src="https://www.youtube.com/embed/videoseries?list=${album.playlistId}"
+                title="${album.title}"
+                allowfullscreen>
+              </iframe>
+            </div>
+
+            <a
+              href="https://youtube.com/playlist?list=${album.playlistId}"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 text-xs uppercase tracking-widest font-bold text-gray-400 hover:text-red-500 transition">
+              <i data-lucide="${album.icon}" class="w-4 h-4"></i>
+              ${album.tag}
+            </a>
 
           </div>
-
-          <div class="aspect-video-container mb-4">
-            <iframe
-              src="https://www.youtube.com/embed/videoseries?list=${album.playlistId}"
-              title="${album.title}"
-              allowfullscreen>
-            </iframe>
-          </div>
-
-          <a
-            href="https://youtube.com/playlist?list=${album.playlistId}"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center gap-2 text-xs uppercase tracking-widest font-bold text-gray-400 hover:text-red-500 transition">
-
-            <i data-lucide="${album.icon}" class="w-4 h-4"></i>
-            ${album.tag}
-
-          </a>
-
-        </div>
-      `).join("");
+        `;
+      }).join("");
 
       lucide.createIcons();
+
+      // If page loaded with a hash, scroll to that album
+      if (window.location.hash) {
+        const target = document.querySelector(window.location.hash);
+        if (target) {
+          setTimeout(() => target.scrollIntoView({ behavior: "smooth", block: "start" }), 300);
+        }
+      }
     }
+
+    // ─── Init ──────────────────────────────────────────────────────────────────
 
     window.addEventListener("DOMContentLoaded", () => {
 
@@ -391,26 +504,11 @@
       window.addEventListener("scroll", () => {
         const nav = document.getElementById("navbar");
         if (!nav) return;
-
         if (window.scrollY > 50) {
-          nav.classList.add(
-            "bg-black/95",
-            "py-4",
-            "shadow-2xl",
-            "border-b",
-            "border-white/5"
-          );
-
+          nav.classList.add("bg-black/95", "py-4", "shadow-2xl", "border-b", "border-white/5");
           nav.classList.remove("bg-transparent", "py-6");
         } else {
-          nav.classList.remove(
-            "bg-black/95",
-            "py-4",
-            "shadow-2xl",
-            "border-b",
-            "border-white/5"
-          );
-
+          nav.classList.remove("bg-black/95", "py-4", "shadow-2xl", "border-b", "border-white/5");
           nav.classList.add("bg-transparent", "py-6");
         }
       });
