@@ -78,17 +78,19 @@
   <div id="navbar-container"></div>
 
   <script>
-    fetch("../Components/navbar.html")
+    fetch('../Components/navbar.html')
       .then(res => res.text())
       .then(html => {
-        document.getElementById("navbar-container").innerHTML = html;
-
-        const currentLink = document.querySelector('[data-nav-link="musicmix"]');
-        if (currentLink) currentLink.classList.add("text-red-500");
-
-        if (typeof lucide !== "undefined") lucide.createIcons();
+        // Rewrite paths for /Pages/ context
+        html = html.replace(/href="Pages\//g, 'href="');
+        document.getElementById('navbar-container').innerHTML = html;
+        // Highlight current page
+        const currentLink = document.querySelector('[data-nav-link="helpcenter"]');
+        if (currentLink) currentLink.classList.add('text-red-500');
+        // Re-initialize Lucide icons
+        if (typeof lucide !== 'undefined') lucide.createIcons();
       })
-      .catch(err => console.error("Failed to load Navbar:", err));
+      .catch(err => console.error('Failed to load Navbar:', err));
   </script>
 
   <main>
