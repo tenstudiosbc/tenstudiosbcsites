@@ -10,7 +10,6 @@
         position: relative;
         height: 520px;
         perspective: 1200px;
-        overflow: hidden;
     }
 
     .carousel-track {
@@ -47,7 +46,7 @@
     .carousel-card .card-overlay {
         position: absolute;
         inset: 0;
-        background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.1) 100%);
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.4) 40%, rgba(0, 0, 0, 0.1) 100%);
         transition: background 0.5s ease;
     }
 
@@ -66,7 +65,7 @@
         transform: translate(-50%, -50%) scale(1);
         opacity: 1;
         z-index: 10;
-        box-shadow: 0 30px 80px -20px rgba(220, 38, 38, 0.3), 0 0 40px rgba(0,0,0,0.5);
+        box-shadow: 0 30px 80px -20px rgba(220, 38, 38, 0.3), 0 0 40px rgba(0, 0, 0, 0.5);
         border-color: rgba(220, 38, 38, 0.3);
     }
 
@@ -117,9 +116,9 @@
         width: 52px;
         height: 52px;
         border-radius: 50%;
-        background: rgba(0,0,0,0.6);
+        background: rgba(0, 0, 0, 0.6);
         backdrop-filter: blur(8px);
-        border: 1px solid rgba(255,255,255,0.1);
+        border: 1px solid rgba(255, 255, 255, 0.1);
         color: white;
         display: flex;
         align-items: center;
@@ -134,15 +133,20 @@
         box-shadow: 0 0 25px rgba(220, 38, 38, 0.3);
     }
 
-    .carousel-arrow.arrow-left { left: 1.5rem; }
-    .carousel-arrow.arrow-right { right: 1.5rem; }
+    .carousel-arrow.arrow-left {
+        left: 1.5rem;
+    }
+
+    .carousel-arrow.arrow-right {
+        right: 1.5rem;
+    }
 
     /* Dots */
     .carousel-dot {
         width: 8px;
         height: 8px;
         border-radius: 50%;
-        background: rgba(255,255,255,0.2);
+        background: rgba(255, 255, 255, 0.2);
         transition: all 0.4s ease;
         cursor: pointer;
     }
@@ -156,33 +160,62 @@
 
     /* Mobile adjustments */
     @media (max-width: 768px) {
-        .carousel-viewport { height: 420px; }
-        .carousel-card { width: 280px; height: 380px; }
-        .carousel-card.is-prev { transform: translate(calc(-50% - 200px), -50%) scale(0.75); }
-        .carousel-card.is-next { transform: translate(calc(-50% + 200px), -50%) scale(0.75); }
+        .carousel-viewport {
+            height: 420px;
+        }
+
+        .carousel-card {
+            width: 280px;
+            height: 380px;
+        }
+
+        .carousel-card.is-prev {
+            transform: translate(calc(-50% - 200px), -50%) scale(0.75);
+        }
+
+        .carousel-card.is-next {
+            transform: translate(calc(-50% + 200px), -50%) scale(0.75);
+        }
+
         .carousel-card.is-far-prev,
-        .carousel-card.is-far-next { opacity: 0; }
-        .carousel-arrow { width: 40px; height: 40px; }
-        .carousel-arrow.arrow-left { left: 0.5rem; }
-        .carousel-arrow.arrow-right { right: 0.5rem; }
+        .carousel-card.is-far-next {
+            opacity: 0;
+        }
+
+        .carousel-arrow {
+            width: 40px;
+            height: 40px;
+        }
+
+        .carousel-arrow.arrow-left {
+            left: 0.5rem;
+        }
+
+        .carousel-arrow.arrow-right {
+            right: 0.5rem;
+        }
     }
 </style>
 
 <!-- ─── SECTION HTML ─────────────────────────────────────── -->
-<section id="team" class="py-24 bg-[#080808] relative overflow-hidden">
+<section id="team" class="py-24 bg-[#080808] relative">
     <!-- Ambient glow -->
     <div class="absolute inset-0 pointer-events-none">
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-red-600/5 blur-[120px]"></div>
+        <div
+            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-red-600/5 blur-[120px]">
+        </div>
     </div>
 
     <div class="relative z-10 max-w-7xl mx-auto px-6">
         <div class="mb-16 text-center">
-            <div class="inline-block border border-red-600/50 px-4 py-1 rounded-full text-red-500 text-xs font-bold tracking-widest uppercase mb-6 bg-red-600/5">
+            <div
+                class="inline-block border border-red-600/50 px-4 py-1 rounded-full text-red-500 text-xs font-bold tracking-widest uppercase mb-6 bg-red-600/5">
                 Meet The Crew
             </div>
             <h2 class="text-4xl md:text-5xl font-black uppercase mb-4">The Core Team</h2>
             <div class="w-20 h-1 bg-red-600 mx-auto"></div>
-            <p class="mt-4 text-gray-500 font-bold uppercase text-xs tracking-widest">The people behind TSBC's legacy</p>
+            <p class="mt-4 text-gray-500 font-bold uppercase text-xs tracking-widest">The people behind TSBC's legacy
+            </p>
         </div>
     </div>
 
@@ -208,7 +241,9 @@
         <!-- Active member name display -->
         <div class="text-center mt-6">
             <p id="carousel-active-name" class="text-lg font-bold text-white transition-opacity duration-300"></p>
-            <p id="carousel-active-role" class="text-xs text-red-500 uppercase tracking-widest font-bold mt-1 transition-opacity duration-300"></p>
+            <p id="carousel-active-role"
+                class="text-xs text-red-500 uppercase tracking-widest font-bold mt-1 transition-opacity duration-300">
+            </p>
         </div>
     </div>
 </section>
