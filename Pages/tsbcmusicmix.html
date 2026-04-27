@@ -2,338 +2,409 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="TSBC Music Mix - Official soundtracks for SSIA: Vanguard Chronicles and other TSBC projects.">
-    <title>Music Mix | TenStudios Broadcasting Community</title>
-    <link rel="icon" type="image/png" href="favicon.png">
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2WK59XET1E"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-2WK59XET1E');
-    </script>
-    
-    <style>
-        /* Base Themes from Index.html */
-        body {
-            background-color: #050505;
-            color: white;
-            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            overflow-x: hidden;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="TSBC Music Mix - Official soundtracks for SSIA: Vanguard Chronicles and other TSBC projects." />
 
-        .glass {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
+  <title>Music Mix | TSBC Official</title>
 
-        /* Subtle grid background */
-        .grid-bg {
-            background-image: linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px),
-                              linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px);
-            background-size: 40px 40px;
-        }
+  <link rel="icon" type="image/png" href="favicon.png" />
 
-        /* Music Specific Components */
-        .aspect-video-container {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 */
-            height: 0;
-            overflow: hidden;
-        }
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-        .aspect-video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: 0.75rem;
-        }
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
 
-        .division-banner {
-            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .division-banner:hover {
-            transform: scale(1.02);
-        }
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2WK59XET1E"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag("js", new Date());
+    gtag("config", "G-2WK59XET1E");
+  </script>
 
-        .page-transition {
-            animation: fadeIn 0.8s ease-out;
-        }
+  <!-- Shared Site Styles -->
+  <link rel="stylesheet" href="Styles/styles.css" />
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+  <style>
+    /* Music Mix Only */
 
-        /* Scrollbar styling */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #050505; }
-        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #ef4444; }
-    </style>
+    .hero-blob {
+      position: absolute;
+      width: 620px;
+      height: 620px;
+      border-radius: 9999px;
+      background: radial-gradient(circle,
+          rgba(220, 38, 38, 0.12) 0%,
+          transparent 70%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    .aspect-video-container {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+    }
+
+    .aspect-video-container iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      border-radius: 1rem;
+    }
+
+    .division-banner {
+      transition: transform 0.35s ease;
+    }
+
+    .division-banner:hover {
+      transform: scale(1.02);
+    }
+  </style>
 </head>
 
-<body class="grid-bg">
+<body class="page-transition">
 
-    <!-- Navigation (loaded from Components/Navbar.html) -->  
-    <div id="navbar-container"></div>  
-    <script>  
-        fetch('Components/navbar.html')  
-            .then(res => res.text())  
-            .then(html => {  
-                // Rewrite paths for root-level context  
-                html = html.replace(/\.\.\/index\.html/g, 'index.html');  
-                document.getElementById('navbar-container').innerHTML = html;  
-                // Re-initialize Lucide icons for the navbar  
-                if (typeof lucide !== 'undefined') lucide.createIcons();  
-            })  
-            .catch(err => console.error('Failed to load Navbar:', err));  
-    </script>
+  <!-- Navbar -->
+  <div id="navbar-container"></div>
 
-    <main class="pt-32 pb-24 px-6 page-transition">
-        <div class="max-w-7xl mx-auto">
-            
-            <!-- Hero Header Section -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
-                <div class="order-2 lg:order-1">
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-600/10 border border-red-600/30 text-red-500 text-xs font-bold uppercase tracking-widest mb-6">
-                        <span class="relative flex h-2 w-2">
-                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                            <span class="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
-                        </span>
-                        New Division: Reformed 2026
-                    </div>
-                    <h1 class="text-5xl md:text-7xl font-black uppercase mb-6 tracking-tighter leading-none">
-                        TSBC <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-400">Music Mix</span>
-                    </h1>
-                    <p class="max-w-3xl text-gray-400 text-lg leading-relaxed mb-8">
-                        For over 12 years, the <span class="text-white">TenStudios Broadcasting Community</span> has been building worlds. This channel is dedicated to the high-fidelity soundtracks of <span class="text-red-500 font-semibold italic">SSIA: Vanguard Chronicles</span> and other TSBC Projects.
-                    </p>
-                    <div class="flex flex-wrap gap-4">
-                        <div class="glass px-5 py-3 rounded-xl flex items-center gap-3 border-l-2 border-l-red-600">
-                            <i data-lucide="music" class="text-red-500 w-5 h-5"></i>
-                            <span class="text-sm font-bold uppercase tracking-widest">Tactical Audio</span>
-                        </div>
-                        <div class="glass px-5 py-3 rounded-xl flex items-center gap-3 border-l-2 border-l-red-600">
-                            <i data-lucide="award" class="text-red-500 w-5 h-5"></i>
-                            <span class="text-sm font-bold uppercase tracking-widest">Community Focused</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Division Image Banner -->
-                <div class="order-1 lg:order-2">
-                    <div class="relative group">
-                        <!-- Red glow behind image -->
-                        <div class="absolute -inset-2 bg-red-600/20 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition duration-1000"></div>
-                        <div class="relative overflow-hidden rounded-2xl border border-white/10 shadow-2xl">
-                            <img src="https://i.supaimg.com/b3da42ad-02aa-4f1a-b499-acc775586122/48f90050-8be5-4f47-b6b8-b079d0accaca.png" 
-                                 alt="TSBC Music Mix Division Banner" 
-                                 class="w-full h-auto division-banner object-cover"
-                                 onerror="this.src='https://via.placeholder.com/1200x675/1a1a1a/ef4444?text=TSBC+Music+Mix'">
-                        </div>
-                    </div>
-                </div>
+  <script>
+    fetch("Components/Navbar.html")
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById("navbar-container").innerHTML = html;
+
+        const currentLink = document.querySelector('[data-nav-link="musicmix"]');
+        if (currentLink) currentLink.classList.add("text-red-500");
+
+        if (typeof lucide !== "undefined") lucide.createIcons();
+      })
+      .catch(err => console.error("Failed to load Navbar:", err));
+  </script>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="relative pt-44 pb-24 px-6 overflow-hidden">
+
+      <div class="hero-blob"></div>
+
+      <div
+        class="relative z-10 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+
+        <!-- Left -->
+        <div>
+
+          <div
+            class="inline-flex items-center gap-2 border border-red-600/50 px-4 py-1 rounded-full text-red-500 text-xs font-bold tracking-widest uppercase mb-6 bg-red-600/5">
+
+            <i data-lucide="music-4" class="w-3 h-3"></i>
+            TSBC Music Mix
+
+          </div>
+
+          <h1
+            class="text-5xl md:text-7xl font-black leading-none tracking-tighter uppercase mb-6">
+
+            Tactical <br />
+
+            <span
+              class="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-400">
+
+              Soundtracks
+
+            </span>
+
+          </h1>
+
+          <p class="text-gray-500 text-lg leading-relaxed max-w-xl mb-8">
+            Official music division of TenStudios Broadcasting Community creating
+            immersive soundtracks for SSIA: Vanguard Chronicles and future TSBC
+            projects.
+          </p>
+
+          <div class="grid grid-cols-2 gap-4 max-w-md">
+
+            <div class="glass rounded-2xl p-4">
+              <p class="text-2xl font-black text-white">2026</p>
+              <p
+                class="text-[10px] uppercase tracking-widest font-bold text-red-500">
+                Reformed
+              </p>
             </div>
 
-            <!-- Albums Divider -->
-            <div class="mb-16 flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-white/5 pb-8">
-                <div>
-                    <h2 class="text-4xl font-black uppercase tracking-tight">The Discography</h2>
-                    <p class="text-red-500 font-bold text-xs uppercase tracking-[0.3em] mt-1">High-Fidelity Audio Archives</p>
-                </div>
-                <div class="flex items-center gap-2 text-gray-500 text-xs font-mono uppercase">
-                    <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-                    Non-Monetized Stream Active
-                </div>
+            <div class="glass rounded-2xl p-4">
+              <p class="text-2xl font-black text-white">Hi-Fi</p>
+              <p
+                class="text-[10px] uppercase tracking-widest font-bold text-red-500">
+                Standard
+              </p>
             </div>
 
-            <!-- DYNAMIC ALBUMS GRID -->
-            <div id="albums-grid" class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                <!-- Loader Placeholder -->
-                <div class="col-span-full py-20 text-center glass rounded-2xl">
-                    <div class="flex flex-col items-center gap-4">
-                        <div class="w-12 h-12 border-4 border-red-600/20 border-t-red-600 rounded-full animate-spin"></div>
-                        <p class="text-gray-500 font-bold uppercase tracking-widest text-sm">Synchronizing Audio Archives...</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Bottom Content: Division Details -->
-            <section class="mt-24 p-8 md:p-16 glass rounded-[2.5rem] relative overflow-hidden border-t border-t-red-600/20">
-                <div class="absolute top-0 right-0 p-12 opacity-[0.03] pointer-events-none select-none">
-                    <i data-lucide="disc" class="w-96 h-96 animate-spin" style="animation-duration: 30s;"></i>
-                </div>
-                
-                <div class="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-                    <div>
-                        <h3 class="text-3xl font-black uppercase mb-8 flex items-center gap-4">
-                            <span class="w-8 h-1 bg-red-600"></span>
-                            Division Overview
-                        </h3>
-                        <div class="space-y-6 text-gray-400 text-lg leading-relaxed">
-                            <p>
-                                <span class="text-white font-bold">TSBC Music Mix</span> is an officially reformed division as of 2026, operating alongside Media Productions and Game Development.
-                            </p>
-                            <p>
-                                This non-monetized project focuses on translating the tactical atmosphere of our game universes into high-fidelity soundscapes for the community.
-                            </p>
-                        </div>
-                        <div class="mt-10 flex gap-6">
-                            <div class="text-center">
-                                <p class="text-3xl font-black text-white">2026</p>
-                                <p class="text-[10px] uppercase font-bold text-red-500 tracking-tighter">Established</p>
-                            </div>
-                            <div class="w-px h-12 bg-white/10"></div>
-                            <div class="text-center">
-                                <p class="text-3xl font-black text-white">Hi-Fi</p>
-                                <p class="text-[10px] uppercase font-bold text-red-500 tracking-tighter">Standard</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="grid grid-cols-1 gap-4">
-                        <div class="glass p-6 rounded-2xl group hover:bg-red-600/5 transition-colors">
-                            <div class="flex items-center gap-4">
-                                <div class="p-3 bg-red-600/10 rounded-xl text-red-500">
-                                    <i data-lucide="radio" class="w-6 h-6"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold uppercase text-sm text-white">Community Radio</h4>
-                                    <p class="text-xs text-gray-500">24/7 Tactical atmosphere for fans.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="glass p-6 rounded-2xl group hover:bg-red-600/5 transition-colors">
-                            <div class="flex items-center gap-4">
-                                <div class="p-3 bg-red-600/10 rounded-xl text-red-500">
-                                    <i data-lucide="layers" class="text-red-500 w-6 h-6"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold uppercase text-sm text-white">OST Integration</h4>
-                                    <p class="text-xs text-gray-500">Direct ties to TSBC game projects.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+          </div>
 
         </div>
-    </main>
 
-    <!-- Footer (loaded from Components/Footer.html) -->  
-    <div id="footer-container"></div>  
-    <script>  
-        fetch('Components/footer.html')  
-            .then(res => res.text())  
-            .then(html => {  
-                // Rewrite paths for root-level context  
-                html = html.replace(/\.\.\/index\.html/g, 'index.html');  
-                document.getElementById('footer-container').innerHTML = html;  
-            })  
-            .catch(err => console.error('Failed to load Footer:', err));  
-    </script>
+        <!-- Right -->
+        <div>
 
-    <script>
-        /**
-         * ==========================================
-         * ALBUM DATA EDIT ZONE
-         * ==========================================
-         * Copy a block and update the details to add new music.
-         */
-        const albumData = [
-            {
-                id: "01",
-                title: "Whispers Of Vanguard VOL 1",
-                series: "SSIA Vanguard Chronicles OST",
-                playlistId: "PLP64v_cUHbliOykjJSOn1vxHeHVwz5qDT",
-                tag: "Official Soundtrack",
-                icon: "music-2"
-            },
-            {
-                id: "02",
-                title: "Office Essentials VOL 1",
-                series: "SSIA Vanguard Chronicles OST",
-                playlistId: "PLP64v_cUHblj2YncrB-3QAPjwZnCkzznm",
-                tag: "Ambient / Focus",
-                icon: "headphones"
-            }
-        ];
+          <div class="relative group">
 
-        function renderAlbums() {
-            const grid = document.getElementById('albums-grid');
-            if (!grid) return;
+            <div
+              class="absolute -inset-2 bg-red-600/20 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition duration-700">
+            </div>
 
-            grid.innerHTML = albumData.map(album => `
-                <div class="group">
-                    <div class="mb-6 flex items-end justify-between">
-                        <div>
-                            <h2 class="text-2xl font-black uppercase tracking-tight group-hover:text-red-500 transition-colors">${album.id} ${album.title}</h2>
-                            <p class="text-red-600 font-bold text-[10px] uppercase tracking-[0.3em]">${album.series}</p>
-                        </div>
-                        <span class="text-gray-700 text-[10px] font-mono font-bold">ARC-ID-${album.id}</span>
-                    </div>
-                    
-                    <div class="glass p-4 rounded-[1.5rem] transition-all duration-500 group-hover:border-red-600/30 group-hover:shadow-[0_0_30px_rgba(220,38,38,0.05)]">
-                        <div class="aspect-video-container mb-4">
-                            <iframe 
-                                src="https://www.youtube.com/embed/videoseries?list=${album.playlistId}" 
-                                title="${album.title}" 
-                                frameborder="0" 
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                allowfullscreen>
-                            </iframe>
-                        </div>
-                        <div class="flex items-center justify-between px-2 py-1">
-                            <div class="flex items-center gap-3 text-gray-500 text-[10px] font-bold uppercase tracking-widest">
-                                <i data-lucide="${album.icon}" class="w-4 h-4 text-red-600"></i>
-                                <span>${album.tag}</span>
-                            </div>
-                            <a href="https://youtube.com/playlist?list=${album.playlistId}" 
-                               target="_blank" 
-                               class="text-[10px] font-black uppercase text-gray-400 hover:text-red-500 transition-colors flex items-center gap-1 tracking-tighter">
-                                External Archive <i data-lucide="external-link" class="w-3 h-3"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
+            <div
+              class="relative overflow-hidden rounded-3xl border border-white/10 shadow-2xl">
 
-            // Re-initialize icons
-            if (typeof lucide !== 'undefined') lucide.createIcons();
+              <img
+                src="https://i.supaimg.com/b3da42ad-02aa-4f1a-b499-acc775586122/48f90050-8be5-4f47-b6b8-b079d0accaca.png"
+                alt="TSBC Music Mix Banner"
+                class="w-full h-auto object-cover division-banner"
+                onerror="this.src='https://via.placeholder.com/1200x675/111111/ef4444?text=TSBC+Music+Mix'" />
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- Divider -->
+    <div
+      class="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent">
+    </div>
+
+    <!-- Discography -->
+    <section class="max-w-7xl mx-auto px-6 py-20">
+
+      <div
+        class="mb-14 flex flex-col md:flex-row md:items-center justify-between gap-4">
+
+        <div>
+
+          <p
+            class="text-red-500 text-xs font-bold uppercase tracking-[0.35em] mb-2">
+            Audio Archives
+          </p>
+
+          <h2 class="text-4xl font-black uppercase tracking-tight">
+            Discography
+          </h2>
+
+        </div>
+
+        <div
+          class="glass px-4 py-3 rounded-xl text-xs uppercase tracking-widest font-bold text-gray-400">
+          Non-Monetized Stream Active
+        </div>
+
+      </div>
+
+      <!-- Albums -->
+      <div id="albums-grid"
+        class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+
+        <div class="glass rounded-2xl p-10 text-center text-gray-500">
+          Loading albums...
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- About -->
+    <section class="max-w-7xl mx-auto px-6 pb-24">
+
+      <div class="glass rounded-[2rem] p-8 md:p-12">
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+
+          <div>
+
+            <p
+              class="text-red-500 text-xs font-bold uppercase tracking-[0.35em] mb-3">
+              Overview
+            </p>
+
+            <h3 class="text-3xl font-black uppercase mb-6">
+              Built For Worlds
+            </h3>
+
+            <p class="text-gray-500 leading-relaxed mb-5">
+              TSBC Music Mix transforms storytelling into sound.
+              Every release supports atmosphere, emotion, and tactical identity.
+            </p>
+
+            <p class="text-gray-500 leading-relaxed">
+              Community-first. Passion-driven. Always non-monetized.
+            </p>
+
+          </div>
+
+          <div class="space-y-4">
+
+            <div class="glass rounded-2xl p-5">
+              <div class="flex items-center gap-3">
+                <i data-lucide="radio" class="w-5 h-5 text-red-500"></i>
+                <span class="font-bold uppercase text-sm">
+                  Community Radio Feel
+                </span>
+              </div>
+            </div>
+
+            <div class="glass rounded-2xl p-5">
+              <div class="flex items-center gap-3">
+                <i data-lucide="gamepad-2" class="w-5 h-5 text-red-500"></i>
+                <span class="font-bold uppercase text-sm">
+                  Direct Game Integration
+                </span>
+              </div>
+            </div>
+
+            <div class="glass rounded-2xl p-5">
+              <div class="flex items-center gap-3">
+                <i data-lucide="headphones" class="w-5 h-5 text-red-500"></i>
+                <span class="font-bold uppercase text-sm">
+                  Immersive Listening
+                </span>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <div id="footer-container"></div>
+
+  <script>
+    fetch("Components/Footer.html")
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById("footer-container").innerHTML = html;
+      })
+      .catch(err => console.error("Failed to load Footer:", err));
+  </script>
+
+  <!-- Page Script -->
+  <script>
+    const albumData = [
+      {
+        id: "01",
+        title: "Whispers Of Vanguard VOL 1",
+        series: "SSIA Vanguard Chronicles OST",
+        playlistId: "PLP64v_cUHbliOykjJSOn1vxHeHVwz5qDT",
+        tag: "Official Soundtrack",
+        icon: "music-2"
+      },
+      {
+        id: "02",
+        title: "Office Essentials VOL 1",
+        series: "SSIA Vanguard Chronicles OST",
+        playlistId: "PLP64v_cUHblj2YncrB-3QAPjwZnCkzznm",
+        tag: "Ambient / Focus",
+        icon: "headphones"
+      }
+    ];
+
+    function renderAlbums() {
+      const grid = document.getElementById("albums-grid");
+
+      grid.innerHTML = albumData.map(album => `
+        <div class="glass rounded-3xl p-5 group">
+
+          <div class="mb-5">
+
+            <p class="text-red-500 text-[10px] uppercase tracking-[0.35em] font-bold mb-2">
+              ${album.series}
+            </p>
+
+            <h3 class="text-2xl font-black uppercase group-hover:text-red-500 transition">
+              ${album.id}. ${album.title}
+            </h3>
+
+          </div>
+
+          <div class="aspect-video-container mb-4">
+            <iframe
+              src="https://www.youtube.com/embed/videoseries?list=${album.playlistId}"
+              title="${album.title}"
+              allowfullscreen>
+            </iframe>
+          </div>
+
+          <a
+            href="https://youtube.com/playlist?list=${album.playlistId}"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 text-xs uppercase tracking-widest font-bold text-gray-400 hover:text-red-500 transition">
+
+            <i data-lucide="${album.icon}" class="w-4 h-4"></i>
+            ${album.tag}
+
+          </a>
+
+        </div>
+      `).join("");
+
+      lucide.createIcons();
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+
+      renderAlbums();
+
+      window.addEventListener("scroll", () => {
+        const nav = document.getElementById("navbar");
+        if (!nav) return;
+
+        if (window.scrollY > 50) {
+          nav.classList.add(
+            "bg-black/95",
+            "py-4",
+            "shadow-2xl",
+            "border-b",
+            "border-white/5"
+          );
+
+          nav.classList.remove("bg-transparent", "py-6");
+        } else {
+          nav.classList.remove(
+            "bg-black/95",
+            "py-4",
+            "shadow-2xl",
+            "border-b",
+            "border-white/5"
+          );
+
+          nav.classList.add("bg-transparent", "py-6");
         }
+      });
 
-        // Initialize
-        window.addEventListener('DOMContentLoaded', () => {
-            renderAlbums();
-            
-            // Navbar Scroll Effect
-            window.addEventListener('scroll', () => {
-                const nav = document.getElementById('navbar');
-                if (!nav) return;
-                if (window.scrollY > 50) {
-                    nav.classList.add('bg-black/95', 'py-4', 'shadow-2xl', 'border-b', 'border-white/5');
-                    nav.classList.remove('bg-transparent', 'py-6');
-                } else {
-                    nav.classList.remove('bg-black/95', 'py-4', 'shadow-2xl', 'border-b', 'border-white/5');
-                    nav.classList.add('bg-transparent', 'py-6');
-                }
-            });
-        });
-    </script>
+      lucide.createIcons();
+
+    });
+  </script>
+
 </body>
 
 </html>
