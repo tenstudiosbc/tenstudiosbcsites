@@ -12,7 +12,7 @@ const gamesData = [
         status: "Released",
         statusColor: "green", // green, blue, yellow, or red
         releaseDate: "Aug 17, 2025",
-        image: "https://i.supaimg.com/b3da42ad-02aa-4f1a-b499-acc775586122/5180490d-29c0-4f01-bea8-89cc4c8b49cf.jpg",
+        image: "https://i.ibb.co.com/46DzRGf/20260417-105314.jpg",
         link: "https://tenstudiosbc.itch.io/ssia-vanguard-chronicles",
         description: "A strategic 2D gacha game set in the SSIA Universe."
     },
